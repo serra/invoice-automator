@@ -24,22 +24,43 @@ invoice_query = """
     """
 
 
+class Client:
+    def __init__(self, url, token):
+        self.url = url
+        self.token = token
+
+    def get_invoices(self, state):
+        query = invoice_query % state
+
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + self.token,
+        }
+
+        response = requests.post(self.url, json={"query": query}, headers=headers)
+        return response.json()["data"]["findInvoices"]
+
+    def sum_invoices(self, state):
+        invoices = self.get_invoices(state)
+        total_amount = sum([invoice["totalAmount"] for invoice in invoices])
+        return total_amount
+
+
 @click.group()
-def cli():
-    pass
+@click.option("--url", envvar="SPACE_URL", help="Fibery Space URL")
+@click.option("--token", envvar="FIBERY_API_TOKEN", help="Fibery API Token")
+@click.pass_context
+def cli(ctx, url, token):
+    ctx.ensure_object(dict)
+    ctx.obj["client"] = Client(url, token)
 
 
 @cli.command()
 @click.option("--state", default="Ready", help="Filter invoices by state")
-@click.option("--url", envvar="SPACE_URL", help="Fibery Space URL")
-@click.option("--token", envvar="FIBERY_API_TOKEN", help="Fibery API Token")
-def list_invoices(state, url, token):
-    query = invoice_query % state
-
-    headers = {"Content-Type": "application/json", "Authorization": "Token " + token}
-
-    response = requests.post(url, json={"query": query}, headers=headers)
-    invoice_data = response.json()["data"]["findInvoices"]
+@click.pass_context
+def list_invoices(ctx, state):
+    client = ctx.obj["client"]
+    invoice_data = client.get_invoices(state)
     for invoice in invoice_data:
         print(
             f"Invoice #{invoice['invoiceNumber']} of {invoice['totalAmount']} for {invoice['customerName']} is {state}"
@@ -48,18 +69,13 @@ def list_invoices(state, url, token):
 
 @cli.command()
 @click.option("--state", default="Ready", help="Filter invoices by state")
-@click.option("--url", envvar="SPACE_URL", help="Fibery Space URL")
-@click.option("--token", envvar="FIBERY_API_TOKEN", help="Fibery API Token")
-def sum_invoices(state, url, token):
-    query = invoice_query % state
-
-    headers = {"Content-Type": "application/json", "Authorization": "Token " + token}
-
-    response = requests.post(url, json={"query": query}, headers=headers)
-    invoice_data = response.json()["data"]["findInvoices"]
+@click.pass_context
+def sum_invoices(ctx, state):
+    client = ctx.obj["client"]
+    invoice_data = client.get_invoices(state)
     total_amount = sum([invoice["totalAmount"] for invoice in invoice_data])
     print(f"Total amount of invoices in {state} state is {total_amount}")
 
 
 if __name__ == "__main__":
-    cli()
+    cli(obj={})
