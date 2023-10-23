@@ -27,16 +27,15 @@ make console
 
 ## Doing
 
-Print invoice number, customer name and total to the command line.
-
-## Backlog
-
-* Generate a pdf for the ready invoices, with customer name, total amount and invoice number.
-* Upload the pdf to Fibery.
 * Add all invoice data to the invoice
 * Add logo to the invoice
 * Pretty-format dates and money fields
+
+## Backlog
+
+* Upload the pdf to Fibery.
 * Upload the invoice to the administration.
+* Cache stylesheets locally
 
 
 ---

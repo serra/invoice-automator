@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice {{ invoice.invoiceNumber }}</title>
+    <!-- Use company stylesheets (consider caching them locally later) -->
+    <link rel="stylesheet"
+        href="https://www.serraict.com/assets/themes/bootstrap/resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.serraict.com/assets/themes/bootstrap/css/style.css?v=1.1">
+</head>
+
+<body>
+    <h1>Factuur</h1>
+    <div>
+        <p>Factuur: {{ invoice.invoiceNumber }}</p>
+        <p>Uw referentie: {{ invoice.customerReference | default('-', true) }}</p>
+    </div>
+    <div>
+        <p>Factuurdatum: {{ invoice.invoiceDate }}</p>
+        <p>Vervaldatum: {{ invoice.dueDate }}</p>
+    </div>
+    <div class="address to">
+        <address>
+            Serra ICT Diensten<br>
+            Hugo de Grootstraat 58<br>
+            2613 TW Delft<br>
+            <a href="mailto:info@serraict.com">info@serraict.com</a>
+        </address>
+    </div>
+    <div class="address to">
+        <address>
+            {{ invoice.customerName }}<br>
+            {{ invoice.customerAddress }}<br>
+            {{ invoice.customerZipcode }} {{ invoice.customerCity }}<br>
+            {{ invoice.customerEmail }}
+            <a href="mailto:{{ invoice.customerEmail }}">{{ invoice.customerEmail }}</a>
+        </address>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Omschrijving</th>
+                <th>Aantal</th>
+                <th>Prijs</th>
+                <th>Totaal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in invoice.invoiceLines %}
+            <tr>
+                <td>{{ line.name }}</td>
+                <td>{{ line.quantity }}</td>
+                <td>{{ line.unitPrice | currency }}</td>
+                <td>{{ line.totalPrice | currency }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="total">
+                <td colspan="3">Total:</td>
+                <td>{{ invoice.totalAmount | currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

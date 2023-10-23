@@ -1,2 +1,4 @@
 requests
 click
+Jinja2
+pdfkit

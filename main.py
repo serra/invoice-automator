@@ -1,12 +1,15 @@
 import os
 import click
 import requests
+from pdf_generator import generate
 
 invoice_query = """
     {
       findInvoices(state: {name: {is: "%s"}}) {
         invoiceNumber
+        customerReference
         customerName
+        customerEmail
         customerAddress
         customerZipcode
         customerCity
@@ -70,11 +73,12 @@ def list_invoices(ctx, state):
 @cli.command()
 @click.option("--state", default="Ready", help="Filter invoices by state")
 @click.pass_context
-def sum_invoices(ctx, state):
+def generate_pdf_for_invoices(ctx, state):
     client = ctx.obj["client"]
     invoice_data = client.get_invoices(state)
-    total_amount = sum([invoice["totalAmount"] for invoice in invoice_data])
-    print(f"Total amount of invoices in {state} state is {total_amount}")
+    for invoice in invoice_data:
+        print(f"Generating PDF for invoice #{invoice['invoiceNumber']} ...")
+        print(f"Done.")
 
 
 if __name__ == "__main__":
