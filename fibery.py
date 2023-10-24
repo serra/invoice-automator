@@ -13,6 +13,9 @@ invoice_query = """
         invoiceDate
         dueDate
         totalAmount
+        vat
+        vatPercentage
+        totalIncludingVat
         invoiceLines {
           name
           quantity
