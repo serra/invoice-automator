@@ -42,8 +42,7 @@ The package pdfkit requires [wkhtmltopdf] to be available on the command line.
 ## Doing
 
 * Save email to draft box in Google workspace.
-  Google has a [Python API] that requires Python 3.10.7+, so we'd need to upgrade Python
-
+  Google has a [Python API] that requires Python 3.10.7+, so we'd need to upgrade Python ✅.
 
 ## Backlog
 
