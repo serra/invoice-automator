@@ -4,6 +4,7 @@ bootstrap:
 update:
 	python -m pip install --upgrade pip
 	pip install -r requirements.txt
+	wkhtmltopdf --version # Check that wkhtmltopdf is installed
 help:
 	@echo "Available commands:"
 	@echo "  bootstrap: Create a virtual environment and install dependencies."
