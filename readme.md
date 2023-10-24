@@ -23,20 +23,22 @@ I use 1password: `. ./export_api_token_from_1password.sh`.
 make console
 ```
 
+## Features
+
+* List open invoices ready to be sent.
+* Generate pdf invoices matching the style of our public website.
+
 ---
 
 ## Doing
 
-* Add all invoice data to the invoice
-* Add logo to the invoice
-* Pretty-format dates and money fields
+* Save email to draft box in Google workspace.
 
 ## Backlog
 
 * Upload the pdf to Fibery.
 * Upload the invoice to the administration.
-* Cache stylesheets locally
-
+* Find a way to use local resources only.
 
 ---
 
