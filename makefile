@@ -19,6 +19,8 @@ console:
 	python main.py list-invoices
 pdf:
 	python main.py generate-pdf-for-invoices
+list:
+	python main.py list-invoices
 test_environment:
 	@echo "This should print the email address of the user you are authenticated as:"
 	curl -X POST $(SPACE_URL) -H "Authorization: Token $(FIBERY_API_TOKEN)" -H "Content-Type: application/json" -d '{"query": "{me{email}}"}'

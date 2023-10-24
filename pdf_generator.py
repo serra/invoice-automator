@@ -25,13 +25,8 @@ env.filters["currency"] = currency_format
 def generate(invoice):
     template = env.get_template("invoice.html")
     html = template.render(invoice=invoice)
-
-    # Convert the HTML to a PDF using pdfkit
     pdf = from_string(html, False)
     invoice_path = os.path.join(dest_dir, f"serra_ict_{invoice['invoiceNumber']}.pdf")
-    # Save the PDF to a file
-    print(
-        f"reference: {invoice['customerReference']} {invoice['customerReference'] is None}"
-    )
     with open(invoice_path, "wb") as f:
         f.write(pdf)
+    return invoice_path
