@@ -1,0 +1,35 @@
+table.invoice {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10%;
+}
+
+tr.total {
+    font-weight: bold;
+}
+
+div.address.to {
+    margin-top: 10%;
+}
+
+div.invoice-details {
+    float: right;
+    text-align: right;
+}
+
+footer {
+    font-size: 0.8em;
+    text-align: center;
+    width: 100%;
+}
+
+div.address-from {
+    float: right;
+    text-align: right;
+}
+
+img.logo {
+    float: left;
+    width: 200px;
+    height: auto;
+}

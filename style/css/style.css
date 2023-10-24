@@ -1,0 +1,620 @@
+img[alt=attribution] { 
+  width: 400px; 
+}
+
+.page-header {
+    padding-top: 0px;
+}
+
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px; }
+
+.container-narrow > hr {
+  margin: 30px 0; }
+
+/* posts index */
+.post > h3.title {
+  position: relative;
+  padding-top: 10px; }
+
+.post > h3.title span.date {
+  position: absolute;
+  right: 0;
+  font-size: 0.9em; }
+
+.post > .more {
+  margin: 10px 0;
+  text-align: left; }
+
+/* post-full*/
+.post-full .date {
+  margin-bottom: 20px;
+  font-weight: bold; }
+
+/* tag_box */
+.tag_box {
+  list-style: none;
+  margin: 0;
+  overflow: hidden; }
+
+.tag_box li {
+  line-height: 28px; }
+
+.tag_box li i {
+  opacity: 0.9; }
+
+.tag_box.inline li {
+  float: left; }
+
+.tag_box a {
+  padding: 3px 6px;
+  margin: 2px;
+  background: #eee;
+  color: #555;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px dashed #cccccc; }
+
+.tag_box a span {
+  vertical-align: super;
+  font-size: 0.8em; }
+
+.tag_box a:hover {
+  background-color: #e5e5e5; }
+
+.tag_box a.active {
+  background: #57A957;
+  border: 1px solid #4c964d;
+  color: #FFF; }
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+/* Padding below the footer and lighter body text */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 6px 24px;
+}
+
+/* empty anchors: adjust position for fixed navbar */
+a[id]:before {
+    content:"";
+    display:block;
+    height: 50px;
+    margin:-10px 0 0;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+.navbar {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.navbar-fixed-top {
+  border-width: 0px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  padding-bottom: 50px;
+  background-color: #732000;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  top: 20px;
+  text-align: center;
+}
+
+.carousel-caption h1 {
+  font-weight: 700;
+  color: inherit;
+  letter-spacing: 9px;
+  text-transform: uppercase;
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 700;
+}
+
+.carousel-control.left {
+  background-image: linear-gradient(to right, rgba(115,32,0,0.5) 0, rgba(115,32,0,0.0001) 100%)
+}
+
+.carousel-control.right {
+  background-image: linear-gradient(to left, rgba(115,32,0,0.5) 0, rgba(115,32,0,0.0001) 100%)
+}
+
+.carousel .item {
+  color: #fff;
+}
+
+/* Resize carousel */
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img,
+.post-header img {
+    width: 100%;
+    min-height: 150px;
+}
+
+/* post headers */
+
+.post-caption {
+  top: 50px;
+  text-align: center;
+}
+
+.post-caption h1 {
+  font-weight: 700;
+  color: inherit;
+  letter-spacing: 9px;
+  text-transform: uppercase;
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 700;
+}
+
+/* images as content */
+img[src$='#img-fit-width'] {
+  width: 100%;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing.header {
+  background-color: #732000;
+  color: #fff;
+  margin-top: -165px;
+}
+
+.marketing {
+
+}
+
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+  z-index: 20;
+}
+
+.marketing .col-lg-4 .circle {
+    width: 150px; 
+    height: 150px;
+    background-color: rgba(115,32,0,0.78);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.marketing .circle a {
+  font-size: 80px;
+  color: #f39c21;
+}
+
+.marketing .circle a:hover {
+  color: #cd7600;
+}
+
+.marketing.header h2 {
+  color: inherit;
+}
+
+.marketing.header h2 a {
+  color: inherit;
+}
+
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* navbar brand */
+
+img.logo {
+  /*box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);*/
+  height: 21px;
+}
+
+.about {
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.marketing h1 {
+  text-align: center;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette {
+  text-align: center;
+  margin-right: 15%;
+  margin-left: 15%;
+}
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.divider {
+  margin: 40px 0;
+}
+
+/* Footer */
+
+.footer {
+  background-color: #009279;
+  background: linear-gradient(135deg, #13B193, #009279);
+  color: #fff;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  line-height: 22px;
+  font-size: 12px;
+  text-align: left;
+  font-weight: 300;
+}
+
+.footer-divider {
+  margin: 40px 0 0 0;
+  background-color: #f39c21;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+footer.page-footer {
+  font-size: 12px;
+  margin: 20px 0;
+}
+
+.footer ul.banner li a {
+  font-size: 30px;
+}
+
+
+ul.banner .img-circle {
+  width: 42px;
+  height: 42px;
+  padding: 1px;
+}
+
+
+.footer ul.banner .img-circle {
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+}
+
+ul.banner li p:nth-child(2) {
+  display: none;
+}
+
+.footer ul.banner li p {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0px;
+  margin: 0px;
+  display: block;
+}
+
+.footer address a {
+  color: #fff;
+}
+
+small {
+  color: inherit;
+}
+
+/* quotes */
+
+blockquote, .quotes {
+  margin-right: 5%;
+  margin-left: 5%;
+
+  padding: 30px;
+
+  font-family: 'Annie Use Your Telescope', cursive;
+  color: #732000;
+  font-size: 30px;
+  border: none;
+  margin-bottom: 0px;
+}
+
+blockquote {
+  background-image: url(/assets/img/openquote.svg);
+  background-position: top left;
+  background-repeat: no-repeat;
+  /*background-size: auto 50%;*/
+  text-align: center;
+}
+
+blockquote footer, blockquote > :last-child {
+  color: #28447f;
+  font-size: 80%;
+}
+
+blockquote > :last-child:before {
+  content: '\2014 \00A0';
+}
+
+blockquote i {
+  font-size: 80%;
+  color: #777;
+}
+
+blockquote li {
+  list-style-type: none;
+}
+
+.video-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Featured image
+-------------------------------------------------- */
+
+.featured {
+  width:100%;
+  height:100%;
+  height:calc(100% - 1px);
+  background-size:cover;
+  background-image:url('/assets/img/featured/scrum-toolbox.jpg');
+  background-position: left center;
+}
+
+.featured .placeholder {
+  /* consider @media here */
+  height: 280px;
+}
+
+.attribution {
+  width: 100%;
+  text-align: center;
+  font-size: x-small;
+}
+
+/* Blog sidebar
+-------------------------------------------------- */
+
+div.blog-sidebar,
+div.blog-sidebar h4,
+div.blog-sidebar h5
+{
+  font-size: 0.9em;
+}
+
+div.blog-sidebar .btn-toolbar
+{
+  margin-bottom: 22px;  
+}
+
+/* Kanban Board
+-------------------------------------------------- */
+
+div.lane h3,
+div.lane h5
+{
+  font-family: 'Annie Use Your Telescope', cursive;
+  text-align: center;
+  text-transform: uppercase;
+
+}
+
+.quote-container {
+  margin-top: 50px;
+  position: relative;
+}
+
+.note {
+  color: #333;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+  font-size: 1.25em;
+}
+
+.note .author {
+  display: block;
+  margin: 40px 0 0 0;
+  text-align: right;
+}
+
+.note-yellow {
+  background: #eae672;
+  border-left-width: 0px;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.note-orange {
+  background: #f39c21;
+  border-left-width: 0px;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  -o-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+
+.note-green {
+  background: #13b193;
+  border-left-width: 0px;
+}
+
+.pin {
+  background-color: #aaa;
+  display: block;
+  height: 32px;
+  width: 2px;
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  z-index: 1;
+}
+
+.pin:after {
+  background-color: #A31;
+  background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.3), hsla(0,0%,0%,.3));
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
+              inset 3px 3px 3px hsla(0,0%,100%,.2),
+              inset -3px -3px 3px hsla(0,0%,0%,.2),
+              23px 20px 3px hsla(0,0%,0%,.15);
+  content: '';
+  height: 12px;
+  left: -5px;
+  position: absolute;
+  top: -10px;
+  width: 12px;
+}
+
+.pin:before {
+  background-color: hsla(0,0%,0%,0.1);
+  box-shadow: 0 0 .25em hsla(0,0%,0%,.1);
+  content: '';
+
+  height: 24px;
+  width: 2px;
+  left: 0;
+  position: absolute;
+  top: 8px;
+
+  transform: rotate(57.5deg);
+  -moz-transform: rotate(57.5deg);
+  -webkit-transform: rotate(57.5deg);
+  -o-transform: rotate(57.5deg);
+  -ms-transform: rotate(57.5deg);
+
+  transform-origin: 50% 100%;
+  -moz-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  -o-transform-origin: 50% 100%;
+}
+
+/* Comments
+-------------------------------------------------- */
+
+.comments, .comment {
+  margin-top: 2em;
+}
+
+.comments h4 {
+  font-size: 1em;
+}
+
+/* Loopy
+-------------------------------------------------- */
+
+iframe.loopy {
+  border: none;
+  width: 500px;
+  height: 440px;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+
+  .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 100%;
+    min-height: 300px;
+  }
+
+}
+
+@media (max-width: 992px) {
+  .marketing.header {
+    margin-top: 0px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .marketing.header {
+    margin-top: 0px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+}
+
+table {
+  padding: 0; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }

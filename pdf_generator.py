@@ -21,12 +21,21 @@ def currency_format(value, symbol="€"):
 env = Environment(loader=FileSystemLoader("templates"))
 env.filters["currency"] = currency_format
 
-options = {"footer-html": "style/footer.html", "header-html": "style/header.html"}
+options = {
+    "page-size": "A4",
+    "footer-html": "style/footer.html",
+    "header-html": "style/header.html",
+}
+stylesheets = [
+    "style/css//invoice.css",
+    "style/css/bootstrap.min.css",
+    "style/css/style.css",
+]
 
 
 def generate(invoice):
     template = env.get_template("invoice.html")
     html = template.render(invoice=invoice)
     invoice_path = os.path.join(dest_dir, f"serra_ict_{invoice['invoiceNumber']}.pdf")
-    pdf = from_string(html, invoice_path, options=options)
+    pdf = from_string(html, invoice_path, options=options, css=stylesheets)
     return invoice_path
