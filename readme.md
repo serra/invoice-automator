@@ -8,7 +8,7 @@ The app will fetch invoice data from my Fibery workspace. Fibery is an online co
 
 ## Set up environment
 
-```
+```shell
 make bootstrap
 . ./venv/bin/activate
 make update
@@ -16,7 +16,7 @@ make update
 
 ## How to use
 
-```
+```shell
 make console
 ```
 
@@ -51,7 +51,10 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 ## Doing
 
 * Save email to draft box in Google workspace.
-  Google has a [Python API] that requires Python 3.10.7+, so we'd need to upgrade Python ✅.
+  The email should have a pdf version of the invoice attached to it.
+  Subject should contain the invoice number.
+  Text should be kind.
+  
 
 ## Backlog
 
