@@ -47,13 +47,14 @@ This token can be passed as a command-line argument.
 
 ### Google mail
 
-Uses OAuth2.
+Uses OAuth2. Since we send emails on behalf of an actual human, we require her permissions to do so.
+The token expires after 24h, so you should not have to login more than once.
+The client configuration (including client id and client secret) are stored using the [keyring] package.
 
 ---
 
 ## Doing
 
-* Safely store secrets like the Google oauth token using keyring package
 * list the last emails with te admin inbox tokens
 * Save email to draft box in Google workspace.
   Google has a [Python API] that requires Python 3.10.7+, so we'd need to upgrade Python ✅.
@@ -71,3 +72,4 @@ Uses OAuth2.
 [Python API]: https://developers.google.com/gmail/api/quickstart/python
 [wkhtmltopdf]: https://wkhtmltopdf.org/
 [weasyprint]: https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#python-api
+[keyring]: https://github.com/jaraco/keyring
