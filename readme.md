@@ -50,7 +50,6 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 
 ## Doing
 
-* list the last emails with te admin inbox tokens
 * Save email to draft box in Google workspace.
   Google has a [Python API] that requires Python 3.10.7+, so we'd need to upgrade Python ✅.
 
@@ -59,7 +58,7 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 * add QR code to pdf invoices
 * Upload the pdf to Fibery.
 * Upload the invoice to the administration.
-* Find a way to use local resources only. Consider switching to [weasyprint]
+* Find a way to use local resources only (e.g. no links to stylesheets using https). Consider switching to [weasyprint]
 
 ---
 
