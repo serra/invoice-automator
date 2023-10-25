@@ -1,8 +1,10 @@
 from email.message import EmailMessage
-from jinja2 import Environment, FileSystemLoader
+from template_helpers import get_template
+
 
 def email_body_for_invoice(invoice):
-    return f""
+    template = get_template("email.txt")
+    return template.render(invoice=invoice)
 
 
 def email_message_for_invoice(invoice, filename):
@@ -10,9 +12,7 @@ def email_message_for_invoice(invoice, filename):
     msg["Subject"] = f"Invoice #{invoice['invoiceNumber']} from Serra ICT Diensten"
     msg["From"] = "marijn@serraict.com"
     msg["To"] = invoice["customerEmail"]
-    msg.set_content(
-        f"Dear {invoice['customerName']},\n\nPlease find attached invoice #{invoice['invoiceNumber']}.\n\nBest regards,\nMarijn van der Zee"
-    )
+    msg.set_content(email_body_for_invoice(invoice))
     msg.add_attachment(
         open(filename, "rb").read(),
         maintype="application",

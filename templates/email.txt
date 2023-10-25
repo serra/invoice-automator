@@ -1,0 +1,13 @@
+Geachte {{ invoice['customerName'] }},
+
+Bijgevoegd vind u factuur  #{{ invoice['invoiceNumber'] }}.
+
+Vriendelijke groeten,
+
+Marijn van der Zee
+
+---
+
+Marijn van der Zee
+marijn@serraict.com
++31638741482
