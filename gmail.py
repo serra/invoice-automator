@@ -5,11 +5,17 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import keyring
+import base64
 
 
 INVOICE_AUTOMATOR_CLIENT_SECRETS_KEY = "SerraICTInvoiceAutomatorGoogleClientSecrets"
 INVOICE_AUTOMATOR_TOKEN_KEY = "SerraICTInvoiceAutomatorGoogleToken"
 SYSTEM_NAME = "Serra ICT Invoice Automator"
+
+SCOPES = [
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.compose",
+]
 
 
 def get_client_secrets():
@@ -28,7 +34,7 @@ def get_client_secrets():
         )
 
 
-def build_service(scopes):
+def build_service(scopes=SCOPES):
     creds = None
     token = keyring.get_password(SYSTEM_NAME, INVOICE_AUTOMATOR_TOKEN_KEY)
     if token:
@@ -47,3 +53,9 @@ def build_service(scopes):
         keyring.set_password(SYSTEM_NAME, INVOICE_AUTOMATOR_TOKEN_KEY, creds.to_json())
 
     return build("gmail", "v1", credentials=creds)
+
+
+def create_draft_email(message, service=build_service()):
+    encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+    create_message = {"message": {"raw": encoded_message}}
+    service.users().drafts().create(userId="me", body=create_message).execute()

@@ -1,7 +1,8 @@
-import os
 import click
 from fibery import InvoiceClient
 from pdf_generator import generate
+from email_generator import email_message_for_invoice
+from gmail import create_draft_email
 
 
 @click.group()
@@ -12,8 +13,8 @@ def cli(ctx, url):
     ctx.obj["client"] = InvoiceClient(url)
 
 
-@cli.command()
-@click.option("--state", default="Ready", help="List invoices by invoice state")
+@cli.command(help="List invoices")
+@click.option("--state", default="Ready")
 @click.pass_context
 def list_invoices(ctx, state):
     client = ctx.obj["client"]
@@ -24,10 +25,8 @@ def list_invoices(ctx, state):
         )
 
 
-@cli.command()
-@click.option(
-    "--state", default="Ready", help="Generate PDF for invoices by invoice state"
-)
+@cli.command(help="Generate PDF for invoices by invoice state")
+@click.option("--state", default="Ready")
 @click.pass_context
 def generate_pdf_for_invoices(ctx, state):
     client = ctx.obj["client"]
@@ -35,6 +34,23 @@ def generate_pdf_for_invoices(ctx, state):
     for invoice in invoice_data:
         print(f"Generating PDF for invoice #{invoice['invoiceNumber']} ...")
         generate(invoice)
+        print(f"Done.")
+
+
+@cli.command(
+    help="Prepare email for each invoices. Emails are not sent, but saved as draft."
+)
+@click.option("--state", default="Ready")
+@click.pass_context
+def prepare_emails_for_invoices(ctx, state):
+    client = ctx.obj["client"]
+    invoice_data = client.get_invoices(state)
+    for invoice in invoice_data:
+        print(f"Generating PDF for invoice #{invoice['invoiceNumber']} ...")
+        filename = generate(invoice)
+        print(f"Sending email for invoice #{invoice['invoiceNumber']} ...")
+        msg = email_message_for_invoice(invoice, filename)
+        create_draft_email(msg)
         print(f"Done.")
 
 

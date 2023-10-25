@@ -1,5 +1,6 @@
 import os
-from jinja2 import Environment, FileSystemLoader
+
+from template_helpers import get_template
 from pdfkit import from_string
 
 # check dest_dir
@@ -7,19 +8,6 @@ dest_dir = os.environ.get("INVOICE_DESTINATION_FOLDER", "bin")
 if not os.path.exists(dest_dir):
     os.makedirs(dest_dir)
 
-
-def currency_format(value, symbol="€"):
-    try:
-        money = "{:,.2f}".format(value)
-        money = money.replace(",", " ").replace(".", ",")
-        return f"{symbol} {money}"
-    except (ValueError, TypeError):
-        return value
-
-
-# Load the Jinja2 template
-env = Environment(loader=FileSystemLoader("templates"))
-env.filters["currency"] = currency_format
 
 options = {
     "page-size": "A4",
@@ -34,7 +22,7 @@ stylesheets = [
 
 
 def generate(invoice):
-    template = env.get_template("invoice.html")
+    template = get_template("invoice.html")
     html = template.render(invoice=invoice)
     invoice_path = os.path.join(dest_dir, f"serra_ict_{invoice['invoiceNumber']}.pdf")
     pdf = from_string(html, invoice_path, options=options, css=stylesheets)
