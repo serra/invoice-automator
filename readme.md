@@ -16,9 +16,6 @@ make update
 
 ## How to use
 
-Set the `FIBERY_API_TOKEN` environment variable to your API key.
-I use 1password: `. ./export_api_token_from_1password.sh`.
-
 ```
 make console
 ```
@@ -39,17 +36,15 @@ The package pdfkit requires [wkhtmltopdf] to be available on the command line.
 
 ## Security
 
-### Fibery
+All sensitive information is retrieved using [keyring].
+Set up your platform's credential storage with the appropriate items.
+The app will raise a comprehensive exception if it cannot retrieve required items.
 
-To access Fibery, an API token is needed.
-Preferably, you pass it as an environment variable `FIBERY_API_TOKEN`.
-This token can be passed as a command-line argument.
-
-### Google mail
-
-Uses OAuth2. Since we send emails on behalf of an actual human, we require her permissions to do so.
-The token expires after 24h, so you should not have to login more than once.
-The client configuration (including client id and client secret) are stored using the [keyring] package.
+* _Fibery_: requires an API token.
+* _GMail_: requires client secrets (in json format).
+  Since we send emails on behalf of an actual human, we require her permissions to do so.
+  So we use OAuth2. The OAuth token expires after 24h, so you should not have to login more than once a day.
+  The token is stored using [keyring].
 
 ---
 

@@ -1,4 +1,5 @@
 import requests
+import keyring
 
 invoice_query = """
     {
@@ -26,11 +27,20 @@ invoice_query = """
     }
     """
 
+INVOICE_AUTOMATOR_TOKEN_KEY = "SerraICTInvoiceAutomatorFiberyToken"
+SYSTEM_NAME = "Serra ICT Invoice Automator"
+
 
 class InvoiceClient:
-    def __init__(self, url, token):
+    def __init__(self, url):
         self.url = url
-        self.token = token
+        self.token = keyring.get_password(SYSTEM_NAME, INVOICE_AUTOMATOR_TOKEN_KEY)
+        if not self.token:
+            raise Exception(
+                f"Token not found with system name '{SYSTEM_NAME}' "
+                + f"and key '{INVOICE_AUTOMATOR_TOKEN_KEY}'. "
+                + "Please add the token to your platform's keyring. "
+            )
 
     def get_invoices(self, state):
         query = invoice_query % state
@@ -42,8 +52,3 @@ class InvoiceClient:
 
         response = requests.post(self.url, json={"query": query}, headers=headers)
         return response.json()["data"]["findInvoices"]
-
-    def sum_invoices(self, state):
-        invoices = self.get_invoices(state)
-        total_amount = sum([invoice["totalAmount"] for invoice in invoices])
-        return total_amount

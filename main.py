@@ -6,11 +6,10 @@ from pdf_generator import generate
 
 @click.group()
 @click.option("--url", envvar="SPACE_URL", help="Fibery Space URL")
-@click.option("--token", envvar="FIBERY_API_TOKEN", help="Fibery API Token")
 @click.pass_context
-def cli(ctx, url, token):
+def cli(ctx, url):
     ctx.ensure_object(dict)
-    ctx.obj["client"] = InvoiceClient(url, token)
+    ctx.obj["client"] = InvoiceClient(url)
 
 
 @cli.command()
