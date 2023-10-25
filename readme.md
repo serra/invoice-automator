@@ -24,6 +24,7 @@ make console
 
 * List open invoices ready to be sent.
 * Generate pdf invoices matching the style of our public website.
+* Create email drafts in the authenticated user's GMail draft mailbox.
 
 ## Dependencies
 
@@ -50,11 +51,7 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 
 ## Doing
 
-* Save email to draft box in Google workspace.
-  The email should have a pdf version of the invoice attached to it.
-  Subject should contain the invoice number.
-  Text should be kind.
-  
+* ...
 
 ## Backlog
 
@@ -66,7 +63,6 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 ---
 
 [GraphQL API]: https://api.fibery.io/graphql.html#graphql-api-overview
-[Python API]: https://developers.google.com/gmail/api/quickstart/python
 [wkhtmltopdf]: https://wkhtmltopdf.org/
 [weasyprint]: https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#python-api
 [keyring]: https://github.com/jaraco/keyring

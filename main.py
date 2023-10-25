@@ -13,7 +13,7 @@ def cli(ctx, url):
     ctx.obj["client"] = InvoiceClient(url)
 
 
-@cli.command(help="List invoices")
+@cli.command(help="List invoices.")
 @click.option("--state", default="Ready")
 @click.pass_context
 def list_invoices(ctx, state):
@@ -25,7 +25,7 @@ def list_invoices(ctx, state):
         )
 
 
-@cli.command(help="Generate PDF for invoices by invoice state")
+@cli.command(help="Generate PDF for invoices.")
 @click.option("--state", default="Ready")
 @click.pass_context
 def generate_pdf_for_invoices(ctx, state):
@@ -38,7 +38,7 @@ def generate_pdf_for_invoices(ctx, state):
 
 
 @cli.command(
-    help="Prepare email for each invoices. Emails are not sent, but saved as draft."
+    help="Prepare email for each invoice. Emails are not sent, but saved as draft."
 )
 @click.option("--state", default="Ready")
 @click.pass_context
