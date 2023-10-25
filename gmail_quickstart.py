@@ -1,26 +1,29 @@
 from gmail import build_service
 from googleapiclient.errors import HttpError
+import base64
+from email.message import EmailMessage
 
-# If modifying these scopes, delete the file token.json.
-SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+SCOPES = [
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.compose",
+]
 
 
 def main():
     try:
-        # Call the Gmail API
-        service = build_service(SCOPES)
-        results = service.users().labels().list(userId="me").execute()
-        labels = results.get("labels", [])
+        msg = EmailMessage()
+        msg["Subject"] = "Test email"
+        msg["From"] = "info@serraict.com"
+        msg["To"] = "marijn.vanderzee@gmail.com"
+        msg.set_content("This is a test email")
 
-        if not labels:
-            print("No labels found.")
-            return
-        print("Labels:")
-        for label in labels:
-            print(label["name"])
+        encoded_message = base64.urlsafe_b64encode(msg.as_bytes()).decode()
+        create_message = {"message": {"raw": encoded_message}}
+
+        service = build_service(SCOPES)
+        service.users().drafts().create(userId="me", body=create_message).execute()
 
     except HttpError as error:
-        # TODO(developer) - Handle errors from gmail API.
         print(f"An error occurred: {error}")
 
 
