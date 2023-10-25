@@ -37,10 +37,24 @@ pdfkit,
 see [`requirements.txt`](requirements.txt) for details.
 The package pdfkit requires [wkhtmltopdf] to be available on the command line.
 
+## Security
+
+### Fibery
+
+To access Fibery, an API token is needed.
+Preferably, you pass it as an environment variable `FIBERY_API_TOKEN`.
+This token can be passed as a command-line argument.
+
+### Google mail
+
+Uses OAuth2.
+
 ---
 
 ## Doing
 
+* Safely store secrets like the Google oauth token using keyring package
+* list the last emails with te admin inbox tokens
 * Save email to draft box in Google workspace.
   Google has a [Python API] that requires Python 3.10.7+, so we'd need to upgrade Python ✅.
 
