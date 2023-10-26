@@ -28,7 +28,8 @@ make console
 
 ## Dependencies
 
-Uses requests,
+Uses [Google Python API for gmail],
+requests,
 click,
 Jinja2, and
 pdfkit,
@@ -55,7 +56,8 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 
 ## Backlog
 
-* add QR code to pdf invoices
+* Add QR code to pdf invoices
+* Write a spec and automatic test
 * Upload the pdf to Fibery.
 * Upload the invoice to the administration.
 * Find a way to use local resources only (e.g. no links to stylesheets using https). Consider switching to [weasyprint]
@@ -66,3 +68,4 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 [wkhtmltopdf]: https://wkhtmltopdf.org/
 [weasyprint]: https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#python-api
 [keyring]: https://github.com/jaraco/keyring
+[Google Python API for gmail]: https://developers.google.com/gmail/api/quickstart/python
