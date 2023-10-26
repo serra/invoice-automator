@@ -17,7 +17,7 @@ make update
 ## How to use
 
 ```shell
-make console
+get-paid --list-invoices
 ```
 
 ## Features
@@ -52,9 +52,7 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 
 ## Doing
 
-* Restructure repo using a common layout for python programs.
-  App code should be separated from tests.
-  Add versioning using semantic versioning and git tags.
+--
 
 ## Backlog
 
