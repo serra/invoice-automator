@@ -52,15 +52,17 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 
 ## Doing
 
-* ...
+* Restructure repo using a common layout for python programs.
+  App code should be separated from tests.
+  Add versioning using semantic versioning and git tags.
 
 ## Backlog
 
-* Add QR code to pdf invoices
 * Write a spec and automatic test
-* Upload the pdf to Fibery.
+* Add QR code to pdf invoices
 * Upload the invoice to the administration.
-* Find a way to use local resources only (e.g. no links to stylesheets using https). Consider switching to [weasyprint]
+* Find a way to use local resources only (e.g. no links to stylesheets using https).
+  Consider switching to [weasyprint].
 
 ---
 

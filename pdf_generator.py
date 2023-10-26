@@ -4,7 +4,7 @@ from template_helpers import get_template
 from pdfkit import from_string
 
 # check dest_dir
-dest_dir = os.environ.get("INVOICE_DESTINATION_FOLDER", "bin")
+dest_dir = os.environ.get("INVOICE_DESTINATION_FOLDER", "output")
 if not os.path.exists(dest_dir):
     os.makedirs(dest_dir)
 
