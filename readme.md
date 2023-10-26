@@ -62,6 +62,7 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 * Find a way to use local resources only (e.g. no links to stylesheets using https).
   Consider switching to [weasyprint].
 * a better name would be (fibery) serra ict invoice automator
+* deploy to another machine e.g. with a CI tool on it, so that I can automate it further
 
 ---
 
