@@ -10,14 +10,11 @@ help:
 	@echo "  bootstrap: Create a virtual environment and install dependencies."
 	@echo "  update: Update dependencies."
 	@echo "  help: Show this help message."
-	@echo "  console: Run the console application."
 	@echo "  pdf: Generate PDFs for all invoices."
 	@echo "  test_environment: Test the Fibery API connection."
 	@echo "  "
 	
 	get-paid --help
-console:
-	get-paid list-invoices
 pdf:
 	get-paid generate-pdf-for-invoices
 list:
