@@ -1,0 +1,18 @@
+[project]
+name = "Serra ICT Invoice Automator"
+version = "0.1.0"
+dependencies = [
+    "requests",
+    "click",
+    "Jinja2",
+    "pdfkit",
+    "google-api-python-client",
+    "google-auth-httplib2",
+    "google-auth-oauthlib",
+    "keyring",
+]
+
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

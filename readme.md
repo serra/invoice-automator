@@ -6,7 +6,7 @@ I use the Fibery [GraphQL API] to access data.
 
 The app will fetch invoice data from my Fibery workspace. Fibery is an online collaboration and knowledge management system. In Fibery, information is stored in an unstructured (markdown) format and in a structured, relational database-like format. The structured information is available through a GraphQL api.
 
-## Set up environment
+## Development
 
 ```shell
 make bootstrap
