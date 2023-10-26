@@ -1,1 +1,1 @@
-python -m fibery_invoices.main list-invoices
+python -m invoice_automator list-invoices

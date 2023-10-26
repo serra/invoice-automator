@@ -1,6 +1,6 @@
 import os
 
-from template_helpers import get_template
+from .template_helpers import get_template
 from pdfkit import from_string
 
 # check dest_dir

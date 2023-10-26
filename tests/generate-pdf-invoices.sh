@@ -1,1 +1,1 @@
-python main.py generate-pdf-for-invoices
+python -m invoice_automator generate-pdf-for-invoices

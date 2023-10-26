@@ -1,1 +1,1 @@
-python main.py prepare-emails-for-invoices
+python -m invoice_automator prepare-emails-for-invoices

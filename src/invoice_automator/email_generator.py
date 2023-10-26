@@ -1,5 +1,5 @@
 from email.message import EmailMessage
-from template_helpers import get_template
+from .template_helpers import get_template
 
 
 def email_body_for_invoice(invoice):

@@ -1,8 +1,8 @@
 import click
-from fibery import InvoiceClient
-from pdf_generator import generate
-from email_generator import email_message_for_invoice
-from gmail import create_draft_email
+from .fibery import InvoiceClient
+from .pdf_generator import generate
+from .email_generator import email_message_for_invoice
+from .gmail import create_draft_email
 
 
 state_filter = "Ready"

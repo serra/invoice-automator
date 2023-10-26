@@ -1,5 +1,5 @@
 [project]
-name = "Serra ICT Invoice Automator"
+name = "invoice_automator"
 version = "0.1.0"
 dependencies = [
     "requests",
