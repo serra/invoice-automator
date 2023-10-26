@@ -1,1 +1,1 @@
-python -m invoice_automator list-invoices
+get-paid list-invoices

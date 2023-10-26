@@ -1,1 +1,1 @@
-python -m invoice_automator generate-pdf-for-invoices
+get-paid generate-pdf-for-invoices
