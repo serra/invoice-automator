@@ -63,6 +63,7 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 * Upload the invoice to the administration.
 * Find a way to use local resources only (e.g. no links to stylesheets using https).
   Consider switching to [weasyprint].
+* a better name would be (fibery) serra ict invoice automator
 
 ---
 
