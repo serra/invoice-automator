@@ -8,8 +8,6 @@ update:
 	python -m pip install -r requirements-dev.txt
 	pip install -e .
 	wkhtmltopdf --version # Check that wkhtmltopdf is installed
-check-environment:
-	robot --outputdir output/specs ./docs/api_access.rst
 help:
 	@echo "Available commands:"
 	@echo "  bootstrap: Create a virtual environment and install dependencies."
@@ -20,6 +18,10 @@ help:
 	@echo "  "
 	
 	get-paid --help
+check-environment:
+	robot --outputdir output/specs ./docs/api_access.rst
+specs:
+	robot --outputdir output/specs ./docs/*.rst
 pdf:
 	get-paid generate-pdf-for-invoices
 list:

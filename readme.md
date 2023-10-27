@@ -5,7 +5,9 @@ I create my invoices in Fibery,
 use Fibery's [GraphQL API] to download the invoice data,
 and [Google Python API for gmail] to create draft invoice emails.
 
-## Development
+## Installation and development
+
+Clone the repository, then:
 
 ```shell
 make bootstrap
@@ -16,9 +18,10 @@ make update
 ## How to use
 
 ```shell
-get-paid --list-invoices
 get-paid --help
 ```
+
+Or read the [executable specification](./docs/functionality.rst).
 
 ## Features
 
@@ -26,7 +29,7 @@ get-paid --help
 * Generate pdf invoices matching the style of our public website.
 * Create email drafts in the authenticated user's GMail draft mailbox.
 
-## Dependencies
+## Dependencies and prerequisites
 
 Uses [Google Python API for gmail],
 requests,
@@ -35,18 +38,11 @@ Jinja2, and
 pdfkit,
 see [`pyproject.toml`](pyproject.toml) for details.
 The package pdfkit requires [wkhtmltopdf] to be available on the command line.
+Pyenv is recommended. Python 3.10.6+ required, because of the Gmail API.
 
-## Security
+## Documentation
 
-All sensitive information is retrieved using [keyring].
-Set up your platform's credential storage with the appropriate items.
-The app will raise a comprehensive exception if it cannot retrieve required items.
-
-* _Fibery_: requires an API token.
-* _GMail_: requires client secrets (in json format).
-  Since we send emails on behalf of an actual human, we require her permissions to do so.
-  So we use OAuth2. The OAuth token expires after 24h, so you should not have to login more than once a day.
-  The token is stored using [keyring].
+See [./docs/](./docs) for (executable) specifications.
 
 ---
 
