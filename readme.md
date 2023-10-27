@@ -48,13 +48,14 @@ See [./docs/](./docs) for (executable) specifications.
 
 ## Doing
 
-* Write a spec and an automatic test
+* ...
 
 ## Backlog
 
 * Add a link to the email in Fibery
 * Update status to review
 * Upload file to Fibery and link to invoice
+* ---
 * publish wheel to local repository
 * Add QR code to pdf invoices
 * Upload the invoice to the administration.
