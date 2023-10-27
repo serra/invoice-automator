@@ -9,7 +9,7 @@ update:
 	pip install -e .
 	wkhtmltopdf --version # Check that wkhtmltopdf is installed
 check-environment:
-	robot --outputdir output/specs ./docs/development.rst
+	robot --outputdir output/specs ./docs/api_access.rst
 help:
 	@echo "Available commands:"
 	@echo "  bootstrap: Create a virtual environment and install dependencies."
