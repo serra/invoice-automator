@@ -37,9 +37,10 @@ class InvoiceClient:
         self.token = keyring.get_password(SYSTEM_NAME, INVOICE_AUTOMATOR_TOKEN_KEY)
         if not self.token:
             raise Exception(
-                f"Token not found with system name '{SYSTEM_NAME}' "
+                f"Fibery API Token not found in keyring. "
+                + "Please add the token to your platform's keyring "
+                + f"with system name '{SYSTEM_NAME}' "
                 + f"and key '{INVOICE_AUTOMATOR_TOKEN_KEY}'. "
-                + "Please add the token to your platform's keyring. "
             )
 
     def get_invoices(self, state):
