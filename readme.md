@@ -1,10 +1,9 @@
 # Fibery invoices automation
 
-This repository contains scripts that help me automate my Fibery invoice workflows.
-
-I use the Fibery [GraphQL API] to access data.
-
-The app will fetch invoice data from my Fibery workspace. Fibery is an online collaboration and knowledge management system. In Fibery, information is stored in an unstructured (markdown) format and in a structured, relational database-like format. The structured information is available through a GraphQL api.
+This repository contains scripts that help me automate my invoice workflows.
+I create my invoices in Fibery,
+use Fibery's [GraphQL API] to download the invoice data,
+and [Google Python API for gmail] to create draft invoice emails.
 
 ## Development
 
@@ -18,6 +17,7 @@ make update
 
 ```shell
 get-paid --list-invoices
+get-paid --help
 ```
 
 ## Features
@@ -33,7 +33,7 @@ requests,
 click,
 Jinja2, and
 pdfkit,
-see [`requirements.txt`](requirements.txt) for details.
+see [`pyproject.toml`](pyproject.toml) for details.
 The package pdfkit requires [wkhtmltopdf] to be available on the command line.
 
 ## Security
@@ -52,11 +52,14 @@ The app will raise a comprehensive exception if it cannot retrieve required item
 
 ## Doing
 
---
+* Write a spec and an automatic test
 
 ## Backlog
 
-* Write a spec and automatic test
+* Add a link to the email in Fibery
+* Update status to review
+* Upload file to Fibery and link to invoice
+* publish wheel to local repository
 * Add QR code to pdf invoices
 * Upload the invoice to the administration.
 * Find a way to use local resources only (e.g. no links to stylesheets using https).
