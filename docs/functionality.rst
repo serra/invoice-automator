@@ -58,7 +58,8 @@ The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF fi
         Run Successfully     get-paid generate-pdf-for-invoices
 
 About these specifications
-------------------------
+--------------------------
+
 
 This is an executable specification that 
 can be executed with `Robot Framework <http://robotframework.org/>`_.
@@ -66,11 +67,4 @@ can be executed with `Robot Framework <http://robotframework.org/>`_.
 .. code:: robotframework
 
     *** Settings ***
-    Library          OperatingSystem
-
-    *** Keywords ***
-    Run Successfully
-        [Arguments]    ${command}
-        ${rc}    ${stderr}=    Run And Return RC And Output    ${command}
-        Should Be Equal As Integers    ${rc}    0
-        ...    reason=Command failed with error: ${stderr}
+    Resource    ./lib/CliKeywords.robot
