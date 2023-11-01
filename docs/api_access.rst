@@ -33,6 +33,9 @@ The URL to the Fibery API should be specified as an environment variable.
         Environment Variable Should Be Set    SPACE_URL
         Fibery API token is stored in credential storage to access invoices
 
+You can access the Fibery GraphQL API unsing this 
+`GraphiQL UI  <https://serra.fibery.io/api/graphql/space/Sales>`_ too.
+
 Access to Gmail
 ---------------
 

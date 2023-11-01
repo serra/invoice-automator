@@ -21,24 +21,15 @@ make update
 get-paid --help
 ```
 
-Or read the [executable specification](./docs/functionality.rst).
+See the [executable specification](./docs/functionality.rst) for details.
 
-## Features
-
-* List open invoices ready to be sent.
-* Generate pdf invoices matching the style of our public website.
-* Create email drafts in the authenticated user's GMail draft mailbox.
 
 ## Dependencies and prerequisites
 
-Uses [Google Python API for gmail],
-requests,
-click,
-Jinja2, and
-pdfkit,
-see [`pyproject.toml`](pyproject.toml) for details.
+Uses [Google Python API for gmail].
+Python 3.10.6+ required, because of the Gmail API.
+See [`pyproject.toml`](pyproject.toml) for all requirements.
 The package pdfkit requires [wkhtmltopdf] to be available on the command line.
-Pyenv is recommended. Python 3.10.6+ required, because of the Gmail API.
 
 ## Documentation
 

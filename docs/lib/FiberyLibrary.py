@@ -1,14 +1,24 @@
 import os
 from invoice_automator import fibery
+from robot.api import ContinuableFailure
 
 
 class FiberyLibrary:
     def __init__(self):
-        pass
+        self.url = os.environ["SPACE_URL"]
+        self.client = fibery.InvoiceClient(self.url)
 
     def Fibery_API_token_is_stored_in_credential_storage_to_access_invoices(self):
-        url = os.environ["SPACE_URL"]
         # this will raise a clear exception
         # if the authorization token is not available or invalid
-        self.client = fibery.InvoiceClient(url)
         invoices = self.client.get_invoices("Ready")
+
+    def the_pdf_files_are_attached_to_the_invoice_entities_in_Fibery(self):
+        invoices = self.client.get_invoices("Ready")
+        for invoice in invoices:
+            if not any(
+                file["contentType"] == "application/pdf" for file in invoice["files"]
+            ):
+                raise ContinuableFailure(
+                    f"Expected invoice {invoice['invoiceNumber']} to have a PDF file attached"
+                )

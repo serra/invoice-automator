@@ -4,15 +4,16 @@ Invoice Automator
 Invoice Automator is Serra ICT's simple command line application 
 to create and email pretty emails based on data from our administration system.
 
+Main features:
+
+* List open invoices ready to be sent.
+* Generate pdf invoices matching the style of our public website.
+* Create email drafts in the authenticated user's GMail draft mailbox.
+
 Installation
 ------------
 
 See readme in the `src` folder.
-
-.. note:: 
-    
-    This application is only tested on Mac OS X.
-    It might work on other platforms, but we don't know.
 
 Usage
 -----
@@ -42,8 +43,8 @@ To list invoices, use the `list-invoices` command.
         Run Successfully     get-paid list-invoices
         Run Successfully     get-paid --state=Ready list-invoices
 
-PDF generation
-~~~~~~~~~~~~~~
+Generate PDF files
+~~~~~~~~~~~~~~~~~~
 
 The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF files.
 
@@ -57,6 +58,20 @@ The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF fi
     Create PDF documents for all invoices in the 'Ready' state
         Run Successfully     get-paid generate-pdf-for-invoices
 
+Send invoices
+~~~~~~~~~~~~~
+
+To send emails, we use the `prepare-emails-for-invoices` command.
+
+.. code:: robotframework
+
+    *** Test Cases ***
+    Prepare emails for all invoices in the 'Ready' state
+        Run Successfully     get-paid prepare-emails-for-invoices
+        The invoices emails are in the Drafts folder with pdf invoices as attachments
+        The pdf files are attached to the invoice entities in Fibery
+
+
 About these specifications
 --------------------------
 
@@ -68,3 +83,5 @@ can be executed with `Robot Framework <http://robotframework.org/>`_.
 
     *** Settings ***
     Resource    ./lib/CliKeywords.robot
+    Library          ./lib/FiberyLibrary.py
+    Library          ./lib/GmailLibrary.py

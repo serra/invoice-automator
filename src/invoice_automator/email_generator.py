@@ -13,10 +13,12 @@ def email_message_for_invoice(invoice, filename):
     msg["From"] = "marijn@serraict.com"
     msg["To"] = invoice["customerEmail"]
     msg.set_content(email_body_for_invoice(invoice))
-    msg.add_attachment(
-        open(filename, "rb").read(),
-        maintype="application",
-        subtype="pdf",
-        filename=f"Factuur_{invoice['invoiceNumber']}.pdf",
-    )
+
+    with open(filename, "rb") as f:
+        msg.add_attachment(
+            f.read(),
+            maintype="application",
+            subtype="pdf",
+            filename=f"Factuur_{invoice['invoiceNumber']}.pdf",
+        )
     return msg
