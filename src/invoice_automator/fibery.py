@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import keyring
 
@@ -76,9 +77,12 @@ class FileClient:
         headers = {
             "Authorization": "Token " + self.token,
         }
-
         with open(path, "rb") as f:
-            response = requests.post(self.url, headers=headers, files={"file": f})
+            response = requests.post(
+                self.url,
+                headers=headers,
+                files={"file": (os.path.basename(path), f, "application/pdf")},
+            )
 
         return response.json()["fibery/id"]
 
