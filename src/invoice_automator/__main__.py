@@ -26,7 +26,7 @@ def cli(url, file_url, command_url, state):
     state_filter = state
 
 
-@cli.command(help="List invoices.")
+@cli.command(help="List invoices.", name="list")
 def list_invoices():
     invoice_data = invoice_client.get_invoices(state_filter)
     for invoice in invoice_data:
@@ -35,7 +35,7 @@ def list_invoices():
         )
 
 
-@cli.command(help="Generate PDF for invoices.")
+@cli.command(help="Generate PDF for invoices.", name="gen")
 def generate_pdf_for_invoices():
     invoice_data = invoice_client.get_invoices(state_filter)
     for invoice in invoice_data:
@@ -45,7 +45,8 @@ def generate_pdf_for_invoices():
 
 
 @cli.command(
-    help="Prepare email for each invoice. Emails are not sent, but saved as draft."
+    help="Prepare email for each invoice. Emails are not sent, but saved as draft.",
+    name="email",
 )
 def prepare_emails_for_invoices():
     invoice_data = invoice_client.get_invoices(state_filter)

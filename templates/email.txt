@@ -1,6 +1,6 @@
 Geachte {{ invoice['customerName'] }},
 
-Bijgevoegd vind u factuur  #{{ invoice['invoiceNumber'] }}.
+Bijgevoegd vindt u factuur  #{{ invoice['invoiceNumber'] }}.
 
 Vriendelijke groeten,
 
