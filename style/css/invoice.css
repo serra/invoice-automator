@@ -33,3 +33,8 @@ img.logo {
     width: 200px;
     height: auto;
 }
+
+div.specification {
+    page-break-before: always;
+    padding-top: 10%;
+}

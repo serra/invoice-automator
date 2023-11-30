@@ -25,11 +25,16 @@ invoice_query = """
           quantity
           unitPrice
           totalPrice
+          timeLogs {
+            name
+            date
+            timeSpent
+          }
         }
         files {
           name
           contentType
-        }        
+        }
       }
     }
     """
