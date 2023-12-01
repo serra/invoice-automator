@@ -92,25 +92,15 @@ class FileClient:
         return response.json()["fibery/id"]
 
     def attach_file_to_entity(self, file_id, entity_id):
-        command = json.loads(
-            """
-        {
-           "command": "fibery.entity/add-collection-items",
-           "args": {
-             "type": "Sales/Invoice",
-             "field": "Files/Files",
-             "entity": { "fibery/id": "%s" },
-             "items": [
-               { "fibery/id": "%s" }
-             ]
-           }
+        command = {
+            "command": "fibery.entity/add-collection-items",
+            "args": {
+                "type": "Sales/Invoice",
+                "field": "Files/Files",
+                "entity": {"fibery/id": entity_id},
+                "items": [{"fibery/id": file_id}],
+            },
         }
-        """
-            % (
-                entity_id,
-                file_id,
-            )
-        )
 
         headers = {
             "Content-Type": "application/json",
