@@ -30,18 +30,18 @@ After installation, you can run the application by running `get-paid` in your te
 List invoices
 ~~~~~~~~~~~~~
 
-To list invoices, use the `list-invoices` command.
+To list invoices, use the `list` command.
 
 .. code:: robotframework
 
     *** Test Cases ***
     List invoice information
-        Run Successfully     get-paid list-invoices
-        Run Successfully     get-paid --state=Draft list-invoices
+        Run Successfully     get-paid list
+        Run Successfully     get-paid --state=Draft list
 
     The default state is 'Ready', so these commands are equivalent:
-        Run Successfully     get-paid list-invoices
-        Run Successfully     get-paid --state=Ready list-invoices
+        Run Successfully     get-paid list
+        Run Successfully     get-paid --state=Ready list
 
 Generate PDF files
 ~~~~~~~~~~~~~~~~~~
@@ -56,20 +56,24 @@ The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF fi
 
     *** Test Cases ***
     Create PDF documents for all invoices in the 'Ready' state
-        Run Successfully     get-paid generate-pdf-for-invoices
+        Run Successfully     get-paid gen
 
 Send invoices
 ~~~~~~~~~~~~~
 
-To send emails, we use the `prepare-emails-for-invoices` command.
+To send emails, we use the `email` command.
 
 .. code:: robotframework
 
     *** Test Cases ***
     Prepare emails for all invoices in the 'Ready' state
-        Run Successfully     get-paid prepare-emails-for-invoices
+        Run Successfully     get-paid email
         The invoices emails are in the Drafts folder with pdf invoices as attachments
         The pdf files are attached to the invoice entities in Fibery
+
+The emails are reviewed manually before sending.
+Once emails are sent, the state of the invoices
+the user moves them to the sent column in Fibery.
 
 
 About these specifications
@@ -85,3 +89,4 @@ can be executed with `Robot Framework <http://robotframework.org/>`_.
     Resource    ./lib/CliKeywords.robot
     Library          ./lib/FiberyLibrary.py
     Library          ./lib/GmailLibrary.py
+    Library          ./lib/MoneyBirdLibrary.py
