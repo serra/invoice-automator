@@ -1,1 +1,0 @@
-get-paid list-invoices
