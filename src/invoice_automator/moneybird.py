@@ -10,22 +10,21 @@ MONEY_BIRD_BASE_URL = f"https://moneybird.com/api/v2/{MONEY_BIRD_ADMINISTRATION_
 def from_fibery_invoice(fibery_invoice: dict):
     fi = fibery_invoice
     return {
+        "contact_id": 407113669141333734,  # TODO: map to MoneyBird contact
         "reference": fi["invoiceNumber"],
-        # "invoice_date": fibery_invoice["invoiceDate"],
-        # "due_date": fibery_invoice["dueDate"],
-        # "state": "draft",
-        # "currency": "EUR",
-        # "prices_are_incl_tax": True,
-        # "discount": 0,
-        # "discount_type": "percentage",
-        # "invoice_lines": [
-        #     {
-        #         "description": fibery_invoice["description"],
-        #         "price": fibery_invoice["totalAmount"],
-        #         "tax_rate_id": fibery_invoice["taxRate"]["id"],
-        #         "quantity": 1,
-        #     }
-        # ],
+        "date": fibery_invoice["invoiceDate"],
+        "due_date": fibery_invoice["dueDate"],
+        "currency": "EUR",
+        "source": "Fibery",
+        "source_url": f"https://serra.fibery.io/Sales/Invoice/{fi['publicId']}",
+        "details_attributes": [
+            {
+                "description": fi["name"],
+                "price": fi["totalAmount"],
+                "amount": 1,
+            }
+        ],
+        "prices_are_incl_tax": False,
     }
 
 
@@ -56,12 +55,11 @@ class ExternalInvoiceClient:
         )
         return response.json()
 
-    def create_invoice(self, invoice):
-        mb_external_invoice = from_fibery_invoice(invoice)
-
+    def create_invoice(self, mb_external_invoice):
+        data = {"external_sales_invoice": mb_external_invoice}
         response = requests.post(
-            self.base_url + "/external_sales_invoice",
-            json=invoice,
+            self.base_url + "/external_sales_invoices",
             headers=self.headers,
+            json=data,
         )
-        return response.json()
+        print(response.text)

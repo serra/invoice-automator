@@ -7,6 +7,8 @@ invoice_query = """
     {
       findInvoices(state: {name: {is: "%s"}}) {
         id
+        publicId
+        name
         invoiceNumber
         customerReference
         customerName
