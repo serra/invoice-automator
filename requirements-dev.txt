@@ -1,2 +1,4 @@
-robotframework
 docutils
+robotframework
+pytest
+watchdog[watchmedo]

@@ -22,6 +22,10 @@ check-environment:
 	robot --outputdir output/specs ./docs/api_access.rst
 specs:
 	robot --outputdir output/specs ./docs/*.rst
+test:
+	pytest
+test-and-watch:
+	watchmedo shell-command --patterns="*.py" --recursive --command='clear; pytest' .
 pdf:
 	get-paid generate-pdf-for-invoices
 list:

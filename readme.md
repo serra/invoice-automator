@@ -39,17 +39,20 @@ See [./docs/](./docs) for (executable) specifications.
 
 ## Doing
 
-* ...
+* Experiment: add invoice to MoneyBird by uploading pdf through the api
+  * add the data fields to the invoice in mb:
+    * reference - invoice number in Fibery
+  * for all invoices in the sent column
 
 ## Backlog
 
+* Sales invoices are automatically administrated, and I do not have to do anything manually.
+* ---
 * Add a link to the email in Fibery
 * Update status to review
-* Upload file to Fibery and link to invoice
 * ---
 * publish wheel to local repository
 * Add QR code to pdf invoices
-* Upload the invoice to the administration.
 * Find a way to use local resources only (e.g. no links to stylesheets using https).
   Consider switching to [weasyprint].
 * a better name would be (fibery) serra ict invoice automator
