@@ -3,8 +3,6 @@ import requests
 
 INVOICE_AUTOMATOR_MONEY_BIRD_TOKEN_KEY = "SerraICTInvoiceAutomatorMoneyBirdToken"
 SYSTEM_NAME = "Serra ICT Invoice Automator"
-MONEY_BIRD_ADMINISTRATION_ID = "406911143627458262"
-MONEY_BIRD_BASE_URL = f"https://moneybird.com/api/v2/{MONEY_BIRD_ADMINISTRATION_ID}/"
 
 
 def from_fibery_invoice(fibery_invoice: dict):
@@ -40,7 +38,7 @@ def get_token():
 
 
 class ExternalInvoiceClient:
-    def __init__(self, base_url=MONEY_BIRD_BASE_URL):
+    def __init__(self, base_url):
         self.base_url = base_url
         self.token = get_token()
         self.headers = {
@@ -84,4 +82,7 @@ class ExternalInvoiceClient:
             headers=self.headers,
             json=data,
         )
-        print(response.text)
+        if response.status_code == 201:
+            return response.json()
+        else:
+            raise Exception(f"Failed to create MoneyBird invoice: {response.text}")

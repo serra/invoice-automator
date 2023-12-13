@@ -63,16 +63,21 @@ def prepare_emails_for_invoices():
 
 
 @cli.command(help="Save invoices to MoneyBird.", name="admin")
-def administrate_invoices():
+@click.option(
+    "--money-bird-base-url",
+    envvar="MONEY_BIRD_BASE_URL",
+    help="MoneyBird administration base URL.",
+)
+def administrate_invoices(money_bird_base_url):
     invoice_data = invoice_client.get_invoices("Sent")
-    mb = ExternalInvoiceClient()
+    mb = ExternalInvoiceClient(money_bird_base_url)
     for invoice in invoice_data:
         print(f"Saving invoice #{invoice['invoiceNumber']} to MoneyBird ...", end=" ")
         contact_id = mb.get_or_create_contact_id(invoice["customerName"])
         mb_invoice = from_fibery_invoice(invoice)
         mb_invoice["contact_id"] = contact_id
-        mb.create_invoice(mb_invoice)
-        print(f"done.")
+        result = mb.create_invoice(mb_invoice)
+        print(f"done: {result['id']}.")
 
 
 if __name__ == "__main__":
