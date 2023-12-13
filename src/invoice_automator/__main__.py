@@ -3,6 +3,7 @@ from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
 from .email_generator import email_message_for_invoice
 from .gmail import create_draft_email
+from .moneybird import ExternalInvoiceClient
 
 
 state_filter = "Ready"
@@ -58,6 +59,16 @@ def prepare_emails_for_invoices():
         create_draft_email(msg)
         print("uploading to Fibery ...", end=" ")
         file_client.upload_and_attach(filename, invoice["id"])
+        print(f"done.")
+
+
+@cli.command(help="Save invoices to MoneyBird.", name="admin")
+def administrate_invoices():
+    invoice_data = invoice_client.get_invoices("Sent")
+    mb = ExternalInvoiceClient()
+    for invoice in invoice_data:
+        print(f"Saving invoice #{invoice['invoiceNumber']} to MoneyBird ...", end=" ")
+        mb.save(invoice)
         print(f"done.")
 
 

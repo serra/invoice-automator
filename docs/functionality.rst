@@ -75,6 +75,20 @@ The emails are reviewed manually before sending.
 Once emails are sent, the state of the invoices
 the user moves them to the sent column in Fibery.
 
+Administrate invoices
+~~~~~~~~~~~~~~~~~~~~~
+
+To administrate invoices, we use the `admin` command.
+
+.. code:: robotframework
+
+    *** Test Cases ***
+    Administrate all invoices in the sent column
+        Run Successfully     get-paid admin
+        The invoices in the sent column in Fibery are stored as an external invoice in MoneyBird
+
+
+
 
 About these specifications
 --------------------------
