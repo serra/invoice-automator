@@ -68,7 +68,9 @@ def administrate_invoices():
     mb = ExternalInvoiceClient()
     for invoice in invoice_data:
         print(f"Saving invoice #{invoice['invoiceNumber']} to MoneyBird ...", end=" ")
+        contact_id = mb.get_or_create_contact_id(invoice["customerName"])
         mb_invoice = from_fibery_invoice(invoice)
+        mb_invoice["contact_id"] = contact_id
         mb.create_invoice(mb_invoice)
         print(f"done.")
 

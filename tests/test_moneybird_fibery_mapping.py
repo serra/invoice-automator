@@ -75,4 +75,3 @@ def test_invoice_mapping():
     assert inv["details_attributes"][0]["price"] == 500.00
     assert inv["details_attributes"][0]["amount"] == 1
     assert inv["prices_are_incl_tax"] == False
-    assert inv["contact_id"] == 407113669141333734

@@ -10,7 +10,6 @@ MONEY_BIRD_BASE_URL = f"https://moneybird.com/api/v2/{MONEY_BIRD_ADMINISTRATION_
 def from_fibery_invoice(fibery_invoice: dict):
     fi = fibery_invoice
     return {
-        "contact_id": 407113669141333734,  # TODO: map to MoneyBird contact
         "reference": fi["invoiceNumber"],
         "date": fibery_invoice["invoiceDate"],
         "due_date": fibery_invoice["dueDate"],
@@ -54,6 +53,29 @@ class ExternalInvoiceClient:
             self.base_url + +"/external_sales_invoices.json?", headers=self.headers
         )
         return response.json()
+
+    def create_contact(self, contact_name):
+        data = {"contact": {"company_name": contact_name}}
+        response = requests.post(
+            self.base_url + "/contacts.json", headers=self.headers, json=data
+        )
+        if response.status_code == 201:
+            data = response.json()
+            return data["id"]
+        else:
+            raise Exception(f"Failed to create MoneyBird contact: {response.text}")
+
+    def get_or_create_contact_id(self, contact_name):
+        response = requests.get(
+            self.base_url + "/contacts.json?query=" + contact_name, headers=self.headers
+        )
+        if response.status_code == 200:
+            # the contact exists, so use it:
+            data = response.json()
+            if len(data) > 0:
+                return data[0]["id"]
+
+        return self.create_contact(contact_name)
 
     def create_invoice(self, mb_external_invoice):
         data = {"external_sales_invoice": mb_external_invoice}
