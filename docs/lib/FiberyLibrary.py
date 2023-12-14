@@ -22,3 +22,10 @@ class FiberyLibrary:
                 raise ContinuableFailure(
                     f"Expected invoice {invoice['invoiceNumber']} to have a PDF file attached"
                 )
+
+    def the_invoices_are_moved_out_of_the_ready_column_in_Fibery(self):
+        invoices = self.client.get_invoices("Ready")
+        if len(invoices) > 0:
+            raise ContinuableFailure(
+                f"Expected all invoices to be moved out of the Ready column, but found {len(invoices)} still in Ready"
+            )

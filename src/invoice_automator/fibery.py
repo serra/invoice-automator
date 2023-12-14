@@ -58,20 +58,39 @@ def get_token():
 
 
 class InvoiceClient:
-    def __init__(self, url):
+    def __init__(self, url, command_url):
         self.url = url
+        self.command_url = command_url
         self.token = get_token()
-
-    def get_invoices(self, state):
-        query = invoice_query % state
-
-        headers = {
+        self.headers = {
             "Content-Type": "application/json",
             "Authorization": "Token " + self.token,
         }
 
-        response = requests.post(self.url, json={"query": query}, headers=headers)
+    def get_invoices(self, state):
+        query = invoice_query % state
+
+        response = requests.post(self.url, json={"query": query}, headers=self.headers)
         return response.json()["data"]["findInvoices"]
+
+    def set_state_to_review(self, invoice_id):
+        command = {
+            "command": "fibery.entity/update",
+            "args": {
+                "type": "Sales/Invoice",
+                "entity": {
+                    "fibery/id": invoice_id,
+                    "workflow/state": {
+                        "fibery/id": "5e42d1c0-74a4-11ee-8870-33f30b17590d",
+                    },
+                },
+            },
+        }
+        response = requests.post(self.command_url, json=[command], headers=self.headers)
+        if response.status_code != 200:
+            raise Exception(
+                f"Failed to set state of invoice {invoice_id} to review: {response.text}"
+            )
 
 
 class FileClient:
