@@ -61,6 +61,13 @@ The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF fi
 Send invoices
 ~~~~~~~~~~~~~
 
+Primary option is to send the emails using the Fibery user interface.
+An invoice will have a `send invoice` button that will send the email.
+Fibery uses SendGrid to send emails.
+
+As a backup method, we can send emails using the `send` command.
+This will fall back to using our Gmail account.
+
 To send emails, we use the `email` command.
 
 .. code:: robotframework
@@ -72,8 +79,7 @@ To send emails, we use the `email` command.
         The pdf files are attached to the invoice entities in Fibery
 
 The emails are reviewed manually before sending.
-Once emails are sent, the state of the invoices
-the user moves them to the sent column in Fibery.
+Once emails are sent, the user moves them to the sent column in Fibery.
 
 Administrate invoices
 ~~~~~~~~~~~~~~~~~~~~~

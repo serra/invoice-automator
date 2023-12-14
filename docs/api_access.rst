@@ -5,6 +5,7 @@ The invoice automator needs access to:
 
 - Fibery
 - Gmail
+- MoneyBird
 
 This document describes how to set up the environment to access these services.
 
@@ -54,8 +55,21 @@ Download the credentials file in json format and store it in your platform's key
         can access credential  "Serra ICT Invoice Automator"    "SerraICTInvoiceAutomatorGoogleClientSecrets"
         can load gmail client secrets
 
+Access to MoneyBird
+-------------------
+
+We use the MoneyBird API to add sales invoices to our MoneyBird administration.
+
+.. code:: robotframework
+
+    *** Test Cases ***
+    The environment is set up to access our MoneyBird administration
+        can access credential  "Serra ICT Invoice Automator"    "SerraICTInvoiceAutomatorMoneyBirdToken"
+        Environment Variable Should Be Set    MONEY_BIRD_BASE_URL
+
+
 About these specifications
-------------------------
+--------------------------
 
 This is an executable specification that 
 can be executed with `Robot Framework <http://robotframework.org/>`_.
