@@ -1,6 +1,11 @@
 [project]
 name = "invoice_automator"
-version = "0.1.0"
+description = "Integration scripts and documentation to automate Serra ICT's invoice workflows."
+authors = [
+    { name = "Marijn van der Zee", email = "marijn@serraict.com" },
+    { name = "gpt-4-0613", email = "genie@serraict.com" },
+]
+requires-python = ">=3.10"
 dependencies = [
     "requests",
     "click",
@@ -11,10 +16,11 @@ dependencies = [
     "google-auth-oauthlib",
     "keyring",
 ]
+dynamic = ["version"]
 
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]

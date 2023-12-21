@@ -2,3 +2,4 @@ docutils
 robotframework
 pytest
 watchdog[watchmedo]
+setuptools_scm>=8
