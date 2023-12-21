@@ -1,0 +1,21 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# we _do_ include the git repository, because the histroy is used to determin the version number of the package
+# .git 
+
+# Files
+.DS_Store
+*.log
+*.sql
+*.sqlite3
+
+# Python artifacts
+dist/
+build/
+*.egg-info/
+
+# optech artifacts
+output/
