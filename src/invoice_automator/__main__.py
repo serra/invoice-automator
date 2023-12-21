@@ -12,6 +12,7 @@ file_client = None
 
 
 @click.group()
+@click.version_option()
 @click.option("--url", envvar="SPACE_URL", help="Fibery Space URL")
 @click.option("--file-url", envvar="FIBERY_FILE_URL", help="Fibery Space URL")
 @click.option(

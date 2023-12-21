@@ -25,3 +25,5 @@ build-backend = "setuptools.build_meta"
 
 [project.scripts]
 get-paid = "invoice_automator:__main__.cli"
+
+[tool.setuptools_scm]
