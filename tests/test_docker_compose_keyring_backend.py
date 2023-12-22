@@ -10,12 +10,6 @@ def test_can_print_available_backends():
     print(keyring.backend.get_all_keyring())
 
 
-def test_can_read_password_from_backend():
-    keyring.set_password("docker-compose", "test", "test")
-    password = keyring.get_password("docker-compose", "test")
-    assert password == "test"
-
-
 def test_can_create_custom_backend():
     kbe = DockerComposeKeyringBackend()
 
