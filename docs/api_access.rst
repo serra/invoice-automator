@@ -40,20 +40,8 @@ You can access the Fibery GraphQL API unsing this
 Access to Gmail
 ---------------
 
-We send out invoices via Gmail on behalf of an actual human.
-This human needs to grant the invoice automator access to their Gmail account.
-This is done via oAuth2.
-
-The GMail API is managed through the 
-`Google Cloud project Serra ICT Invoice Automator <https://console.cloud.google.com/apis/credentials?project=serraict-invoice-atomator>`_.
-Download the credentials file in json format and store it in your platform's keyring.
-
-.. code:: robotframework
-
-    *** Test Cases ***
-    The environment is set up to start the Gmail OAuth2 workflow
-        can access credential  "Serra ICT Invoice Automator"    "SerraICTInvoiceAutomatorGoogleClientSecrets"
-        can load gmail client secrets
+Access to Gmail is no longer needed to send invoices to customers.
+We deprecated this feature because because it is an unnecessary security risk.
 
 Access to MoneyBird
 -------------------
@@ -79,7 +67,6 @@ can be executed with `Robot Framework <http://robotframework.org/>`_.
     *** Settings ***
     Library          OperatingSystem
     Library          ./lib/FiberyLibrary.py
-    Library          ./lib/GmailLibrary.py
     Library          ./lib/KeyringLibrary.py
 
 

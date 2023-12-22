@@ -1,10 +1,11 @@
 import click
+
+# import the keyring backend so that it is available in the keyring registry
+from .docker_compose_keyring_backend import DockerComposeKeyringBackend
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
 from .email_generator import email_message_for_invoice
-from .gmail import create_draft_email
 from .moneybird import ExternalInvoiceClient, from_fibery_invoice
-
 
 state_filter = "Ready"
 invoice_client = None
@@ -50,22 +51,11 @@ def generate_pdf_for_invoices():
     help="Attach nice pdf file to all filtered invoices in Fibery.",
     name="email",
 )
-# add flag to send emails directly using gmail API
-@click.option(
-    "--use-gmail",
-    is_flag=True,
-    default=False,
-    help="Send emails directly using Gmail API.",
-)
-def prepare_emails_for_invoices(use_gmail=False):
+def prepare_emails_for_invoices():
     invoice_data = invoice_client.get_invoices(state_filter)
     for invoice in invoice_data:
         print(f"Generating PDF for invoice #{invoice['invoiceNumber']} ...", end=" ")
         filename = generate(invoice)
-        if use_gmail:
-            print(f"saving draft email ...", end=" ")
-            msg = email_message_for_invoice(invoice, filename)
-            create_draft_email(msg)
         print("uploading to Fibery ...", end=" ")
         file_client.upload_and_attach(filename, invoice["id"])
         invoice_client.set_state_to_review(invoice["id"])

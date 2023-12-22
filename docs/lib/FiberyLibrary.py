@@ -6,7 +6,8 @@ from robot.api import ContinuableFailure
 class FiberyLibrary:
     def __init__(self):
         self.url = os.environ["SPACE_URL"]
-        self.client = fibery.InvoiceClient(self.url)
+        cmd_url = os.environ["FIBERY_COMMAND_URL"]
+        self.client = fibery.InvoiceClient(self.url, cmd_url)
 
     def Fibery_API_token_is_stored_in_credential_storage_to_access_invoices(self):
         # this will raise a clear exception

@@ -65,20 +65,15 @@ Primary option is to send the emails using the Fibery user interface.
 An invoice will have a `send invoice` button that will send the email.
 Fibery uses SendGrid to send emails.
 
-As a backup method, we can send emails using the `-use-gmail` option.
-This will fall back to using our Gmail account.
-
 .. code:: robotframework
 
     *** Test Cases ***
     Prepare emails for all invoices in the 'Ready' state
-        Run Successfully     get-paid email --use-gmail
-        The invoices emails are in the Drafts folder with pdf invoices as attachments
+        Run Successfully     get-paid email
         The pdf files are attached to the invoice entities in Fibery
         The invoices are moved out of the Ready column in Fibery
 
 The emails are reviewed manually before sending.
-Once emails are sent, the user moves them to the sent column in Fibery.
 
 Administrate invoices
 ~~~~~~~~~~~~~~~~~~~~~
@@ -103,5 +98,4 @@ can be executed with `Robot Framework <http://robotframework.org/>`_.
     *** Settings ***
     Resource    ./lib/CliKeywords.robot
     Library          ./lib/FiberyLibrary.py
-    Library          ./lib/GmailLibrary.py
     Library          ./lib/MoneyBirdLibrary.py
