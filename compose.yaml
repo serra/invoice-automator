@@ -1,0 +1,11 @@
+services:
+  invoice_automator:
+    #image: myapp:latest
+    build: .
+    env_file:
+      - .env
+    secrets:
+      - my_secret
+secrets:
+  my_secret:
+    file: ./secrets/my_secret.txt

@@ -31,7 +31,7 @@ download_stylesheets:
 	wget "https://www.serraict.com/assets/themes/bootstrap/resources/bootstrap/css/bootstrap.min.css" -O ./style/css/bootstrap.min.css
 	wget "https://www.serraict.com/assets/themes/bootstrap/css/style.css?v=1.1" -O ./style/css/style.css
 docker_run:
-	docker run --env-file=.env invoice-automator
+	docker compose up
 ### Build and release commands
 build:
 	python -m build
