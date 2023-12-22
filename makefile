@@ -18,7 +18,6 @@ update:
 	python -m pip install --upgrade pip build
 	python -m pip install -r requirements-dev.txt
 	pip install -e .
-	wkhtmltopdf --version # Check that wkhtmltopdf is installed
 check-environment:
 	robot --outputdir output/specs ./docs/api_access.rst
 specs:
