@@ -1,11 +1,13 @@
 services:
   invoice_automator:
-    #image: myapp:latest
-    build: .
+    image: invoice-automator:latest
     env_file:
       - .env
     secrets:
-      - my_secret
+      - Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorFiberyToken
+      - Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorMoneyBirdToken
 secrets:
-  my_secret:
-    file: ./secrets/my_secret.txt
+  Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorFiberyToken:
+    file: ./secrets/fibery
+  Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorMoneyBirdToken:
+    file: ./secrets/moneybird
