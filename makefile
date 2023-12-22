@@ -30,6 +30,8 @@ test-and-watch:
 download_stylesheets:
 	wget "https://www.serraict.com/assets/themes/bootstrap/resources/bootstrap/css/bootstrap.min.css" -O ./style/css/bootstrap.min.css
 	wget "https://www.serraict.com/assets/themes/bootstrap/css/style.css?v=1.1" -O ./style/css/style.css
+docker_run:
+	docker run --env-file=.env invoice-automator
 ### Build and release commands
 build:
 	python -m build
@@ -50,8 +52,6 @@ release:
 	@git push origin --tags
 docker_image:
 	docker build -t invoice-automator .
-docker_run:
-	docker run --env-file=.env -p 5001:5000 invoice-automator
 ### Commands for the get-paid CLI
 pdf:
 	get-paid generate-pdf-for-invoices
