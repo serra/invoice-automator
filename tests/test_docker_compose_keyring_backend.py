@@ -51,6 +51,12 @@ def test_can_get_password():
 
 
 def test_can_get_moneybird_password_although_the_system_name_has_spaces():
+    # if it does not exist, create the file "./tests/run/secrets/Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorMoneyBirdToken":
+    with open(
+        "./tests/run/secrets/Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorMoneyBirdToken",
+        "w",
+    ) as f:
+        f.write("this is the moneybird secret")
     kbe = DockerComposeKeyringBackend(SECRET_PATH)
     keyring.set_keyring(kbe)
     password = keyring.get_password(
