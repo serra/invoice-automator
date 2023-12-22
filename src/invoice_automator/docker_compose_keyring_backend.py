@@ -1,11 +1,13 @@
 import os
 import keyring
+from keyring._compat import properties
 
 
 class DockerComposeKeyringBackend(keyring.backend.KeyringBackend):
     def __init__(self, path_to_secrets: str = "/run/secrets/"):
         self.path_to_secrets = path_to_secrets
 
+    @properties.classproperty
     def priority(cls):
         # on mac, the mac os keychain backend has priority 5,
         # so I choose a lower value because by default i want to use the mac os keychain
