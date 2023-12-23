@@ -15,7 +15,7 @@ file_client = None
 @click.group()
 @click.version_option()
 @click.option("--url", envvar="SPACE_URL", help="Fibery Space URL")
-@click.option("--file-url", envvar="FIBERY_FILE_URL", help="Fibery Space URL")
+@click.option("--file-url", envvar="FIBERY_FILE_URL", help="Fibery File URL")
 @click.option(
     "--command-url", envvar="FIBERY_COMMAND_URL", help="Fibery Command API URL"
 )
@@ -49,7 +49,7 @@ def generate_pdf_for_invoices():
 
 @cli.command(
     help="Attach nice pdf file to all filtered invoices in Fibery.",
-    name="email",
+    name="attach",
 )
 def prepare_emails_for_invoices():
     invoice_data = invoice_client.get_invoices(state_filter)
