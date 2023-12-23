@@ -26,8 +26,6 @@ See the [executable specification](./docs/functionality.rst) for details.
 
 ## Dependencies and prerequisites
 
-Uses [Google Python API for gmail].
-Python 3.10.6+ required, because of the Gmail API.
 See [`pyproject.toml`](pyproject.toml) for all requirements.
 The package pdfkit requires [wkhtmltopdf] to be available on the command line.
 
