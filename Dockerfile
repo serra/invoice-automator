@@ -6,6 +6,7 @@ COPY . /invoice-automator/
 
 RUN pip install --upgrade pip setuptools wheel setuptools_scm
 RUN pip install --no-cache-dir --upgrade .
-# wkhtmltopdf is required for pdfkit
+RUN apt-get update && apt-get install -y wkhtmltopdf
+RUN mkdir ./output/invoices
 
-CMD ["get-paid", "--help"]
+CMD ["get-paid", "gen"]
