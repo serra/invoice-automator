@@ -37,10 +37,12 @@ See [./docs/](./docs) for (executable) specifications.
 
 ## Doing
 
-* Experiment: add invoice to MoneyBird by uploading pdf through the api
-  * add the data fields to the invoice in mb:
-    * reference - invoice number in Fibery
-  * for all invoices in the sent column
+Switch to weasyprint
+
+Dockerize
+
+* fix headers and footers
+* fix fonts and styles
 
 ## Backlog
 

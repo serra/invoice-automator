@@ -8,6 +8,7 @@
         "ICT's",
         "moneybird",
         "PDF",
+        "weasyprint",
         "wkhtmltopdf"
     ],
     "python.testing.pytestArgs": [

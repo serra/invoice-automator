@@ -1,7 +1,8 @@
 import os
 
 from .template_helpers import get_template
-from pdfkit import from_string
+from weasyprint import HTML, CSS
+from weasyprint.text.fonts import FontConfiguration
 
 # check dest_dir
 dest_dir = os.environ.get("INVOICE_DESTINATION_FOLDER", "output")
@@ -24,7 +25,9 @@ stylesheets = [
 
 def generate(invoice):
     template = get_template("invoice.html")
-    html = template.render(invoice=invoice)
+    html = HTML(string=template.render(invoice=invoice))
     invoice_path = os.path.join(dest_dir, f"serra_ict_{invoice['invoiceNumber']}.pdf")
-    pdf = from_string(html, invoice_path, options=options, css=stylesheets)
+    html.write_pdf(
+        invoice_path, stylesheets=stylesheets, font_config=FontConfiguration()
+    )
     return invoice_path
