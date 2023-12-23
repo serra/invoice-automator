@@ -1,4 +1,4 @@
-name: Upload container image to GitHub Packages
+name: Build and test the Python package
 
 on:
   push:
