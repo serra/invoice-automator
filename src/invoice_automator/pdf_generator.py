@@ -16,7 +16,7 @@ options = {
 }
 
 stylesheets = [
-    "style/css//invoice.css",
+    "style/css/invoice.css",
     "style/css/bootstrap.min.css",
     "style/css/style.css",
 ]
