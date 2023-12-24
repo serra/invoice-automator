@@ -69,21 +69,21 @@
             <tr>
                 <td>{{ line.name }}</td>
                 <td>{{ line.quantity }}</td>
-                <td>{{ line.unitPrice | currency }}</td>
-                <td>{{ line.totalPrice | currency }}</td>
+                <td class="nowrap">{{ line.unitPrice | currency }}</td>
+                <td class="nowrap">{{ line.totalPrice | currency }}</td>
             </tr>
             {% endfor %}
             <tr>
                 <td colspan="3">Totaal:</td>
-                <td>{{ invoice.totalAmount | currency }}</td>
+                <td class="nowrap">{{ invoice.totalAmount | currency }}</td>
             </tr>
             <tr>
                 <td colspan="3">BTW ({{ '%.0f%%' | format(invoice.vatPercentage * 100) }}):</td>
-                <td>{{ invoice.vat | currency }}</td>
+                <td class="nowrap">{{ invoice.vat | currency }}</td>
             </tr>
             <tr class="total">
                 <td colspan="3">Te betalen:</td>
-                <td>{{ invoice.totalIncludingVat | currency }}</td>
+                <td class="nowrap">{{ invoice.totalIncludingVat | currency }}</td>
             </tr>
         </tbody>
     </table>

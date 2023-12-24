@@ -9,6 +9,10 @@ tr.total {
     font-weight: bold;
 }
 
+td.nowrap {
+    white-space: nowrap;
+}
+
 .address-from {
     text-align: right;
 }
