@@ -1,0 +1,53 @@
+{
+    "id": "aed3a9a0-a165-11ee-8242-21ea57d7bcd5",
+    "name": "Integratie Teeltsystemen",
+    "state": {
+        "name": "Ready",
+        "id": "a69f6220-6811-11ee-9c7a-0bc3e2dc4277",
+        "__typename": "WorkflowStateSalesInvoice"
+    },
+    "publicId": "50",
+    "invoiceNumber": "2023-01",
+    "customerReference": null,
+    "customerName": "Administratie",
+    "customerEmail": "administratie@voorbeeld.nl",
+    "customerAddress": "Dorpsweg 17",
+    "customerZipcode": "2613 TW",
+    "customerCity": "Delft",
+    "invoiceDate": "2023-12-22",
+    "dueDate": "2024-01-05",
+    "totalAmount": 196.2,
+    "vat": 41.202,
+    "vatPercentage": 0.21,
+    "totalIncludingVat": 237.402,
+    "invoiceLines": [
+        {
+            "name": "Marijn van der Zee: Integratie Teeltsystemen",
+            "quantity": 2,
+            "unitPrice": 109,
+            "totalPrice": 218,
+            "timeLogs": [
+                {
+                    "name": "Marijn van der Zee 2.0h",
+                    "date": "2023-12-15",
+                    "timeSpent": 2
+                }
+            ]
+        },
+        {
+            "name": "Korting - bedankt voor het vertrouwen!",
+            "quantity": -10,
+            "unitPrice": 2.18,
+            "totalPrice": -21.8,
+            "timeLogs": []
+        }
+    ],
+    "files": [],
+    "project": {
+        "company": {
+            "invoiceContact": {
+                "name": "Administratie"
+            }
+        }
+    }
+}

@@ -1,31 +1,26 @@
 table.invoice {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10%;
+    margin-top: 1em;
+    font-size: 0.9em;
 }
 
 tr.total {
     font-weight: bold;
 }
 
-div.address.to {
-    margin-top: 10%;
+.address-from {
+    text-align: right;
 }
 
-div.invoice-details {
-    float: right;
-    text-align: right;
+header {
+    font-size: 0.8em;
 }
 
 footer {
     font-size: 0.8em;
     text-align: center;
     width: 100%;
-}
-
-div.address-from {
-    float: right;
-    text-align: right;
 }
 
 img.logo {
@@ -37,4 +32,34 @@ img.logo {
 div.specification {
     page-break-before: always;
     padding-top: 10%;
+}
+
+@page {
+    size: "A4";
+    margin: 1cm;
+    margin-top: 3cm;
+    margin-bottom: 2cm;
+
+    @top-center {
+        content: url('https://www.serraict.com/assets/img/logo.png');
+    }
+
+    @top-right {
+        content: element(header);
+    }
+
+    @bottom-center {
+        content: element(footer);
+    }
+
+}
+
+#headerContent {
+    position: running(header);
+}
+
+#footerContent {
+    position: running(footer);
+    top: 1cm;
+
 }

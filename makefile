@@ -25,7 +25,7 @@ specs:
 test:
 	pytest
 test-and-watch:
-	watchmedo shell-command --patterns="*.py" --recursive --command='clear; pytest' .
+	watchmedo shell-command --patterns="*.py;*.html;*.css" --recursive --command='clear; pytest' .
 download_stylesheets:
 	wget "https://www.serraict.com/assets/themes/bootstrap/resources/bootstrap/css/bootstrap.min.css" -O ./style/css/bootstrap.min.css
 	wget "https://www.serraict.com/assets/themes/bootstrap/css/style.css?v=1.1" -O ./style/css/style.css

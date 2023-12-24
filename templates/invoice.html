@@ -6,83 +6,100 @@
     <title>Invoice {{ invoice.invoiceNumber }}</title>
 </head>
 
-<h1>Factuur</h1>
+<body>
+    <header id="headerContent" class="address-from">
+        <address>
+            Serra ICT Diensten<br>
+            Hugo de Grootstraat 58<br>
+            2613 TW Delft<br>
+            <a href="mailto:info@serraict.com">info@serraict.com</a>
+        </address>
+    </header>
 
-<div class="invoice-details">
-    <table>
-        <tr>
-            <th>Factuur</th>
-            <td>{{ invoice.invoiceNumber }}</td>
-        </tr>
-        <tr>
-            <th>Uw referentie</th>
-            <td>{{ invoice.customerReference.replace(" | ", "<br />") if invoice.customerReference else '-' }}</td>
-        </tr>
-        <tr>
-            <th>Factuurdatum</th>
-            <td>{{ invoice.invoiceDate }}</td>
-        </tr>
-        <tr>
-            <th>Vervaldatum</th>
-            <td>{{ invoice.dueDate }}</td>
-        </tr>
+    <footer id="footerContent">
+        www.serraict.com - info@serraict.com - +31 (0)6 387 414 82 <br>
+        Rabobank: NL86RABO0155773135 - BTW/VAT: NL001441867B27 - KvK: 27363479 <br>
+        Contact : Marijn van der Zee
+    </footer>
+
+    <h1>Factuur {{ invoice.invoiceNumber }}</h1>
+
+    <div class="address-to">
+        <h3>Aan:</h3>
+        <address>
+            {{ invoice.customerName }}<br>
+            {{ invoice.customerAddress }}<br>
+            {{ invoice.customerZipcode }} {{ invoice.customerCity }}<br>
+            <a href="mailto:{{ invoice.customerEmail }}">{{ invoice.customerEmail }}</a>
+        </address>
+    </div>
+
+    <div class="invoice-details">
+        <table class="invoice">
+            <tr>
+                <th>Factuur</th>
+                <td>{{ invoice.invoiceNumber }}</td>
+            </tr>
+            <tr>
+                <th>Uw referentie</th>
+                <td>{{ invoice.customerReference.replace(" | ", "<br />") if invoice.customerReference else '-' }}</td>
+            </tr>
+            <tr>
+                <th>Factuurdatum</th>
+                <td>{{ invoice.invoiceDate }}</td>
+            </tr>
+            <tr>
+                <th>Vervaldatum</th>
+                <td>{{ invoice.dueDate }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <table class="invoice">
+        <thead>
+            <tr>
+                <th>Omschrijving</th>
+                <th>Aantal</th>
+                <th>Prijs</th>
+                <th>Totaal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in invoice.invoiceLines %}
+            <tr>
+                <td>{{ line.name }}</td>
+                <td>{{ line.quantity }}</td>
+                <td>{{ line.unitPrice | currency }}</td>
+                <td>{{ line.totalPrice | currency }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3">Totaal:</td>
+                <td>{{ invoice.totalAmount | currency }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">BTW ({{ '%.0f%%' | format(invoice.vatPercentage * 100) }}):</td>
+                <td>{{ invoice.vat | currency }}</td>
+            </tr>
+            <tr class="total">
+                <td colspan="3">Te betalen:</td>
+                <td>{{ invoice.totalIncludingVat | currency }}</td>
+            </tr>
+        </tbody>
     </table>
-</div>
 
-<div class="address to">
-    <h3>Aan:</h3>
-    <address>
-        {{ invoice.customerName }}<br>
-        {{ invoice.customerAddress }}<br>
-        {{ invoice.customerZipcode }} {{ invoice.customerCity }}<br>
-        <a href="mailto:{{ invoice.customerEmail }}">{{ invoice.customerEmail }}</a>
-    </address>
-</div>
+    <div class="specification">
+        <h1>Urenspecificatie</h1>
+        <p>De volgende uren zijn in rekening gebracht:</p>
+        <ul>
+            {% for line in invoice.invoiceLines %}
+            {% for tl in line.timeLogs %}
+            <li>{{ tl.date }}: {{ tl.name }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
 
-<table class="invoice">
-    <thead>
-        <tr>
-            <th>Omschrijving</th>
-            <th>Aantal</th>
-            <th>Prijs</th>
-            <th>Totaal</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for line in invoice.invoiceLines %}
-        <tr>
-            <td>{{ line.name }}</td>
-            <td>{{ line.quantity }}</td>
-            <td>{{ line.unitPrice | currency }}</td>
-            <td>{{ line.totalPrice | currency }}</td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td colspan="3">Totaal:</td>
-            <td>{{ invoice.totalAmount | currency }}</td>
-        </tr>
-        <tr>
-            <td colspan="3">BTW ({{ '%.0f%%' | format(invoice.vatPercentage * 100) }}):</td>
-            <td>{{ invoice.vat | currency }}</td>
-        </tr>
-        <tr class="total">
-            <td colspan="3">Te betalen:</td>
-            <td>{{ invoice.totalIncludingVat | currency }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<div class="specification">
-    <h1>Urenspecificatie</h1>
-    <p>De volgende uren zijn in rekening gebracht:</p>
-    <ul>
-        {% for line in invoice.invoiceLines %}
-        {% for tl in line.timeLogs %}
-        <li>{{ tl.date }}: {{ tl.name }}</li>
-        {% endfor %}
-        {% endfor %}
-    </ul>
-</div>
 
 </body>
 
