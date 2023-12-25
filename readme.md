@@ -1,9 +1,7 @@
 # Fibery invoices automation
 
-This repository contains scripts that help me automate my invoice workflows.
-I create my invoices in Fibery,
-use Fibery's [GraphQL API] to download the invoice data,
-and [Google Python API for gmail] to create draft invoice emails.
+This repository contains scripts that automate my invoice workflows.
+I create my invoices in Fibery, use Fibery's [GraphQL API] to download the invoice data.
 
 ## Installation and development
 
@@ -21,39 +19,35 @@ make update
 get-paid --help
 ```
 
-See the [executable specification](./docs/functionality.rst) for details.
-
+See the [executable specification](./docs/functionality.rst) for details on usage.
 
 ## Dependencies and prerequisites
 
+Python 3.10 and [weasyprint].
 See [`pyproject.toml`](pyproject.toml) for all requirements.
-The package pdfkit requires [wkhtmltopdf] to be available on the command line.
+Not required, but for best renderings of pdf invoices, install the fonts required by our [style guide].
 
 ## Documentation
 
 See [./docs/](./docs) for (executable) specifications.
 
----
+## Work
 
-## Doing
+### Doing
 
-Switch to weasyprint
+Dockerize:
 
-Dockerize
+* [x] fix headers and footers
+* [x] fix fonts and styles
+* [ ] Install on local NAS or at AWS.
 
-* fix headers and footers
-* fix fonts and styles
-
-## Backlog
+### Backlog
 
 * Sales invoices are automatically administrated, and I do not have to do anything manually.
 * ---
-* Add a link to the email in Fibery
-* Update status to review
-* ---
 * publish wheel to local repository
 * Add QR code to pdf invoices
-* Find a way to use local resources only (e.g. no links to stylesheets using https).
+* Find a way to use local resources only (e.g. no links to stylesheets using https, no external images).
   Consider switching to [weasyprint].
 * a better name would be (fibery) serra ict invoice automator
 * deploy to another machine e.g. with a CI tool on it, so that I can automate it further
@@ -61,7 +55,5 @@ Dockerize
 ---
 
 [GraphQL API]: https://api.fibery.io/graphql.html#graphql-api-overview
-[wkhtmltopdf]: https://wkhtmltopdf.org/
 [weasyprint]: https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#python-api
-[keyring]: https://github.com/jaraco/keyring
-[Google Python API for gmail]: https://developers.google.com/gmail/api/quickstart/python
+[style guide]: https://www.serraict.com/learn/2015/10/19/style-guide
