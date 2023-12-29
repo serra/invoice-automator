@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
     <meta charset="UTF-8">
     <title>Invoice {{ invoice.invoiceNumber }}</title>
 </head>
@@ -22,6 +23,15 @@
         Contact : Marijn van der Zee
     </footer>
 
+    <div id="logoHeaderContent" class="logo-container">
+        <img src="data:image/png;base64, {{ png_base64_encode_logo }}" class="logo" />
+    </div>
+
+    <div class="qr-code-container">
+        <img src="data:image/png;base64, {{ png_base64_encode_qr_image }}" class="qr-code" />
+    </div>
+
+
     <h1>Factuur {{ invoice.invoiceNumber }}</h1>
 
     <div class="address-to">
@@ -34,7 +44,7 @@
         </address>
     </div>
 
-    <div class="invoice-details">
+    <div>
         <table class="invoice">
             <tr>
                 <th>Factuur</th>

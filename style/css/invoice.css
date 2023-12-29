@@ -45,7 +45,7 @@ div.specification {
     margin-bottom: 2cm;
 
     @top-center {
-        content: url('https://www.serraict.com/assets/img/logo.png');
+        content: element(logo_header);
     }
 
     @top-right {
@@ -58,6 +58,10 @@ div.specification {
 
 }
 
+#logoHeaderContent {
+    position: running(logo_header);
+}
+
 #headerContent {
     position: running(header);
 }
@@ -66,4 +70,14 @@ div.specification {
     position: running(footer);
     top: 1cm;
 
+}
+
+img.qr-code {
+    width: 200px;
+    height: auto;
+}
+
+div.qr-code-container {
+    float: right;
+    text-align: center;
 }
