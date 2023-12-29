@@ -41,14 +41,6 @@ Dockerize:
 * [x] fix fonts and styles
 * [ ] Install on local NAS or at AWS.
 
-Add QR code to invoice:
-
-* [x] Integrate EPC lib
-* [x] do not store on disk, embed in html as binary
-* [x] check with various sizes and amounts
-* [x] cleanup and refactor code
-* [x] review <https://www.moneybird.nl/blog/moneybird-payments/>
-
 ### Backlog
 
 * Sales invoices are automatically administrated, and I do not have to do anything manually.
