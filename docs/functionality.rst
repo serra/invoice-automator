@@ -58,18 +58,19 @@ The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF fi
     Create PDF documents for all invoices in the 'Ready' state
         Run Successfully     get-paid gen
 
-Send invoices
-~~~~~~~~~~~~~
+Attach invoices
+~~~~~~~~~~~~~~~
 
-Primary option is to send the emails using the Fibery user interface.
+A user can send the emails using the Fibery user interface.
 An invoice will have a `send invoice` button that will send the email.
 Fibery uses SendGrid to send emails.
+This script will attach the pdf to the invoice entity in Fibery.
 
 .. code:: robotframework
 
     *** Test Cases ***
     Prepare emails for all invoices in the 'Ready' state
-        Run Successfully     get-paid email
+        Run Successfully     get-paid attach
         The pdf files are attached to the invoice entities in Fibery
         The invoices are moved out of the Ready column in Fibery
 

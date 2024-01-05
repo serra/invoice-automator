@@ -1,3 +1,4 @@
+import os
 import requests
 
 INVOICE_AUTOMATOR_MONEY_BIRD_TOKEN_KEY = "MoneyBirdToken"
@@ -25,13 +26,11 @@ def from_fibery_invoice(fibery_invoice: dict):
 
 
 def get_token():
-    token = keyring.get_password(SYSTEM_NAME, INVOICE_AUTOMATOR_MONEY_BIRD_TOKEN_KEY)
+    token = os.getenv("MONEYBIRD_API_TOKEN")
     if not token:
         raise Exception(
-            f"MoneyBird's API Token not found in keyring. "
-            + "Please add the token to your platform's keyring "
-            + f"with system name '{SYSTEM_NAME}' "
-            + f"and key '{INVOICE_AUTOMATOR_MONEY_BIRD_TOKEN_KEY}'. "
+            "MoneyBird's API Token not found in environment variables. "
+            + "Please set the 'MONEYBIRD_API_TOKEN' environment variable."
         )
     return token
 
