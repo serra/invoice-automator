@@ -8,7 +8,6 @@ Main features:
 
 * List open invoices ready to be sent.
 * Generate pdf invoices matching the style of our public website.
-* Create email drafts in the authenticated user's GMail draft mailbox.
 
 Installation
 ------------
@@ -46,13 +45,9 @@ To list invoices, use the `list` command.
 Generate PDF files
 ~~~~~~~~~~~~~~~~~~
 
-The application uses `wkhtmltopdf <http://wkhtmltopdf.org/>`_ to generate PDF files.
+The application uses weasyprint to generate PDF files.
 
 .. code:: robotframework
-
-    *** Test Cases ***
-    Webkit to PDF tool is available on the command line:
-        Run Successfully     wkhtmltopdf --version
 
     *** Test Cases ***
     Create PDF documents for all invoices in the 'Ready' state

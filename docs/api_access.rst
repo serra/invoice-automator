@@ -4,7 +4,6 @@ API Access
 The invoice automator needs access to:
 
 - Fibery
-- Gmail
 - MoneyBird
 
 This document describes how to set up the environment to access these services.
@@ -13,7 +12,7 @@ Accessing Secrets
 -----------------
 
 The Invoice Automator uses the `keyring package <https://pypi.org/project/keyring/>`_ 
-to store and access secrets.
+to store and access secrets in our development environment.
 Keyring comes with sensible defaults for most operating systems,
 but you can also configure it to use a different backend.
 Secrets (such as passwords, api keys, oAuth access tokens) 

@@ -2,7 +2,6 @@ import click
 
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
-from .email_generator import email_message_for_invoice
 from .moneybird import ExternalInvoiceClient, from_fibery_invoice
 
 state_filter = "Ready"
