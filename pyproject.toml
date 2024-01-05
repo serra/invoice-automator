@@ -11,10 +11,9 @@ dependencies = [
     "click",
     "Jinja2",
     "weasyprint",
-    "google-api-python-client",
-    "google-auth-httplib2",
-    "google-auth-oauthlib",
     "py-epc-qr",
+    "fastapi",
+    "uvicorn",
 ]
 dynamic = ["version"]
 

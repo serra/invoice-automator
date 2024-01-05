@@ -1,6 +1,8 @@
 services:
   invoice_automator:
     image: invoice-automator:latest
+    ports:
+      - 5001:5000
     deploy:
       replicas: 1
     env_file:
@@ -8,3 +10,4 @@ services:
     environment:
       - FIBERY_API_TOKEN=${FIBERY_API_TOKEN}
       - MONEYBIRD_API_TOKEN=${MONEYBIRD_API_TOKEN}
+    

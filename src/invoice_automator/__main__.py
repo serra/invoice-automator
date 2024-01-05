@@ -1,4 +1,5 @@
 import click
+import uvicorn
 
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
@@ -75,6 +76,16 @@ def administrate_invoices(money_bird_base_url):
         mb_invoice["contact_id"] = contact_id
         result = mb.create_invoice(mb_invoice)
         print(f"done: {result['id']}.")
+
+
+@cli.command(help="Start web app")
+@click.option("--port", default=5000, help="Port to run web app on")
+@click.option("--host", default="0.0.0.0", help="Host to run web app on")
+def webapp(port: int, host: str):
+    import uvicorn
+    from .webapp import app
+
+    uvicorn.run(app, port=port, host=host)
 
 
 if __name__ == "__main__":

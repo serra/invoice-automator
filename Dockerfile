@@ -10,4 +10,4 @@ RUN pip install --upgrade pip setuptools wheel setuptools_scm
 RUN pip install --no-cache-dir --upgrade .
 RUN mkdir -p /invoice-automator/output/invoices
 
-CMD ["get-paid", "attach"]
+CMD ["get-paid", "webapp"]
