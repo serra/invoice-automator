@@ -1,8 +1,7 @@
-import keyring
 import requests
 
-INVOICE_AUTOMATOR_MONEY_BIRD_TOKEN_KEY = "SerraICTInvoiceAutomatorMoneyBirdToken"
-SYSTEM_NAME = "Serra ICT Invoice Automator"
+INVOICE_AUTOMATOR_MONEY_BIRD_TOKEN_KEY = "MoneyBirdToken"
+SYSTEM_NAME = "Serra_ICT_Invoice _Automator_"
 
 
 def from_fibery_invoice(fibery_invoice: dict):

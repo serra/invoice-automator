@@ -1,7 +1,6 @@
 import json
 import os
 import requests
-import keyring
 
 invoice_query = """
     {
@@ -41,18 +40,15 @@ invoice_query = """
     }
     """
 
-INVOICE_AUTOMATOR_TOKEN_KEY = "SerraICTInvoiceAutomatorFiberyToken"
-SYSTEM_NAME = "Serra ICT Invoice Automator"
+INVOICE_AUTOMATOR_TOKEN_KEY = "FIBERY_API_TOKEN"
 
 
 def get_token():
-    token = keyring.get_password(SYSTEM_NAME, INVOICE_AUTOMATOR_TOKEN_KEY)
+    token = os.getenv("FIBERY_API_TOKEN")
     if not token:
         raise Exception(
-            f"Fibery API Token not found in keyring. "
-            + "Please add the token to your platform's keyring "
-            + f"with system name '{SYSTEM_NAME}' "
-            + f"and key '{INVOICE_AUTOMATOR_TOKEN_KEY}'. "
+            "Fibery API Token not found in the environment variables. "
+            + "Please add the 'FIBERY_API_TOKEN' to your environment variables."
         )
     return token
 
@@ -71,6 +67,10 @@ class InvoiceClient:
         query = invoice_query % state
 
         response = requests.post(self.url, json={"query": query}, headers=self.headers)
+        if response.status_code != 200:
+            raise Exception(
+                f"Failed to query for invoices: {response.text} - token: {self.token}"
+            )
         return response.json()["data"]["findInvoices"]
 
     def set_state_to_review(self, invoice_id):

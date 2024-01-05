@@ -3,3 +3,4 @@ robotframework
 pytest
 watchdog[watchmedo]
 setuptools_scm>=8
+keyring

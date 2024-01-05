@@ -35,6 +35,14 @@ See [./docs/](./docs) for (executable) specifications.
 
 ### Doing
 
+Remove keyring from application logic, instead get tokens from environment variables.
+
+* [ ] Fibery
+* [ ] Moneybird
+* [ ] remove keyring deps from code
+
+Local docker compose should retrieve values from keyring and set them as env vars for the container.
+
 Dockerize:
 
 * [x] fix headers and footers

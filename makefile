@@ -13,11 +13,14 @@ bootstrap:
 	python -m venv venv
 	mkdir -p ./output
 	mkdir -p ./output/specs	
+	@echo "===="
 	@echo "Run 'source venv/bin/activate' to activate the virtual environment, followed by 'make update' to install dependencies."
 update:
 	python -m pip install --upgrade pip build
 	python -m pip install -r requirements-dev.txt
 	pip install -e .
+	@echo "===="
+	@echo "Run . ./scripts/init_api_tokens.sh to set the API tokens as environment variables."
 check-environment:
 	robot --outputdir output/specs ./docs/api_access.rst
 specs:

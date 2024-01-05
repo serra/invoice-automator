@@ -1,7 +1,5 @@
 import click
 
-# import the keyring backend so that it is available in the keyring registry
-from .docker_compose_keyring_backend import DockerComposeKeyringBackend
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
 from .email_generator import email_message_for_invoice
