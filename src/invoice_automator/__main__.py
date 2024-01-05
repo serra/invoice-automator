@@ -1,6 +1,8 @@
 import click
 import uvicorn
 
+from .commands import attach_pdf_files_to_invoices
+
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
 from .moneybird import ExternalInvoiceClient, from_fibery_invoice
@@ -50,14 +52,7 @@ def generate_pdf_for_invoices():
     name="attach",
 )
 def prepare_emails_for_invoices():
-    invoice_data = invoice_client.get_invoices(state_filter)
-    for invoice in invoice_data:
-        print(f"Generating PDF for invoice #{invoice['invoiceNumber']} ...", end=" ")
-        filename = generate(invoice)
-        print("uploading to Fibery ...", end=" ")
-        file_client.upload_and_attach(filename, invoice["id"])
-        invoice_client.set_state_to_review(invoice["id"])
-        print(f"done.")
+    attach_pdf_files_to_invoices(invoice_client, file_client, state_filter)
 
 
 @cli.command(help="Save invoices to MoneyBird.", name="admin")
@@ -82,9 +77,8 @@ def administrate_invoices(money_bird_base_url):
 @click.option("--port", default=5000, help="Port to run web app on")
 @click.option("--host", default="0.0.0.0", help="Host to run web app on")
 def webapp(port: int, host: str):
-    import uvicorn
     from .webapp import app
-
+    
     uvicorn.run(app, port=port, host=host)
 
 
