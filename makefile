@@ -32,6 +32,10 @@ test-and-watch:
 download_stylesheets:
 	wget "https://www.serraict.com/assets/themes/bootstrap/resources/bootstrap/css/bootstrap.min.css" -O ./style/css/bootstrap.min.css
 	wget "https://www.serraict.com/assets/themes/bootstrap/css/style.css?v=1.1" -O ./style/css/style.css
+# for use with docker swarm and stack, sadly does not work with docker compose in standalone mode:
+docker_store_secrets:
+	keyring get "Serra ICT Invoice Automator" MoneyBirdToken | docker secret create Serra_ICT_Invoice_Automator_MoneyBirdToken -
+	keyring get "Serra ICT Invoice Automator" FiberyToken | docker secret create Serra_ICT_Invoice_Automator_FiberyToken -
 docker_run:
 	docker compose up
 ### Build and release commands

@@ -1,13 +1,10 @@
 services:
   invoice_automator:
     image: invoice-automator:latest
+    deploy:
+      replicas: 1
     env_file:
       - .env
-    secrets:
-      - Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorFiberyToken
-      - Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorMoneyBirdToken
-secrets:
-  Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorFiberyToken:
-    file: ./secrets/fibery
-  Serra_ICT_Invoice_Automator_SerraICTInvoiceAutomatorMoneyBirdToken:
-    file: ./secrets/moneybird
+    environment:
+      - FIBERY_API_TOKEN=${FIBERY_API_TOKEN}
+      - MONEYBIRD_API_TOKEN=${MONEYBIRD_API_TOKEN}
