@@ -40,6 +40,8 @@ invoice_query = """
     """
 
 INVOICE_AUTOMATOR_TOKEN_KEY = "FIBERY_API_TOKEN"
+REVIEW_STATE_ID = "5e42d1c0-74a4-11ee-8870-33f30b17590d"
+READY_STATE_ID = "a69f6220-6811-11ee-9c7a-0bc3e2dc4277"
 
 
 def get_token():
@@ -80,7 +82,7 @@ class InvoiceClient:
                 "entity": {
                     "fibery/id": invoice_id,
                     "workflow/state": {
-                        "fibery/id": "5e42d1c0-74a4-11ee-8870-33f30b17590d",
+                        "fibery/id": REVIEW_STATE_ID,
                     },
                 },
             },
@@ -132,3 +134,18 @@ class FileClient:
     def upload_and_attach(self, path, entity_id):
         file_id = self.upload_file(path)
         self.attach_file_to_entity(file_id, entity_id)
+
+
+def id_for_invoice_with_state_changed_to_ready(data):
+    for effect in data["effects"]:
+        if (
+            effect["effect"] == "fibery.entity/update"
+            and effect["type"] == "Sales/Invoice"
+            # in case of a delete, this might be empty, so we have to explicitly check:
+            and effect["values"].get("workflow/state")
+            and effect["values"].get("workflow/state", {}).get("fibery/id")
+            == READY_STATE_ID
+        ):
+            return effect["id"]
+
+    return None
