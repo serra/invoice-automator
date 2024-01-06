@@ -1,6 +1,20 @@
 import click
 import uvicorn
 
+
+# logging configuration
+import logging
+import logging.config
+
+try:
+    logging.config.fileConfig(fname="logging.conf", disable_existing_loggers=False)
+except:
+    logging.basicConfig(level=logging.WARN)
+    logging.warning(
+        "Could not open 'logging.conf'; falling back to basic logging configuration"
+    )
+
+
 from .commands import attach_pdf_files_to_invoices
 
 from .fibery import InvoiceClient, FileClient
@@ -78,7 +92,7 @@ def administrate_invoices(money_bird_base_url):
 @click.option("--host", default="0.0.0.0", help="Host to run web app on")
 def webapp(port: int, host: str):
     from .webapp import app
-    
+
     uvicorn.run(app, port=port, host=host)
 
 

@@ -35,16 +35,10 @@ See [./docs/](./docs) for (executable) specifications.
 
 ### Doing
 
-* When an invoice is updated, we see a log message in DO.
-  * [x] request information is logged and visible in DO
-  * [x] add webhook for invoices
-  * [x] scripts to create and maintain webhooks are added to this repository
-  * [x] documentation is updated
-
 ### Backlog
 
-* fix log configuration - print statements are visible, but info logs are not atm
 * Only respond to state changes of invoices, not to every update
+  * collect some example changes and use them for tests
   * state field change -> log it
   * other field change -> ignore it
 * Sales invoices are automatically administrated, and I do not have to do anything manually.
