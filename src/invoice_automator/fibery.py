@@ -1,9 +1,7 @@
 import os
 import requests
 
-invoice_query = """
-    {
-      findInvoices(state: {name: {is: "%s"}}) {
+invoice_fields = """
         id
         publicId
         name
@@ -35,9 +33,32 @@ invoice_query = """
           name
           contentType
         }
+"""
+
+invoice_query = (
+    """
+    {
+      findInvoices(state: {name: {is: "%s"}}) {
+    """
+    + invoice_fields
+    + """
       }
     }
     """
+)
+
+invoice_query_by_id = (
+    """
+    {
+      findInvoices(id: {is: "%s"}) {
+    """
+    + invoice_fields
+    + """
+      }
+    }
+    """
+)
+
 
 INVOICE_AUTOMATOR_TOKEN_KEY = "FIBERY_API_TOKEN"
 REVIEW_STATE_ID = "5e42d1c0-74a4-11ee-8870-33f30b17590d"
@@ -66,7 +87,16 @@ class InvoiceClient:
 
     def get_invoices(self, state):
         query = invoice_query % state
+        return self.execute_query(query)
 
+    def get_invoice_by_id(self, id):
+        query = invoice_query_by_id % id
+        data = self.execute_query(query)
+        if len(data) == 0:
+            raise Exception(f"Failed to find invoice with id {id}")
+        return data[0]
+
+    def execute_query(self, query):
         response = requests.post(self.url, json={"query": query}, headers=self.headers)
         if response.status_code != 200:
             raise Exception(

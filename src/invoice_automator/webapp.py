@@ -2,7 +2,7 @@ import logging
 from pprint import pprint
 from fastapi import FastAPI, Request
 from .__main__ import invoice_client, file_client
-from .commands import attach_pdf_files_to_invoices
+from .commands import attach_pdf_files_to_invoice_by_id
 from .fibery import id_for_invoice_with_state_changed_to_ready
 
 
@@ -21,6 +21,7 @@ async def update_invoices(request: Request):
         logger.info(
             f"State changed to ready for invoice {id[:5]}, attaching files ... "
         )
+        attach_pdf_files_to_invoice_by_id(invoice_client, file_client, id)
     else:
         logger.info("State not changed to ready, doing nothing ... ")
     return {"message": "Invoices updated!"}
