@@ -11,7 +11,7 @@ root_logger.info("Starting webapp ... ")
 app = FastAPI()
 
 
-@app.get("/update-invoices")
+@app.post("/invoice-updated")
 async def update_invoices(request: Request):
     root_logger.info("Updating invoices ... ")
     print("Request headers:")

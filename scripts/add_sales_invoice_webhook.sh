@@ -3,6 +3,6 @@ curl -X POST https://serra.fibery.io/api/webhooks/v2 \
      -H 'Content-Type: application/json' \
      -d \
       '{
-        "url": "https://invoice-automator.serraict.com/update-invoices",
+        "url": "https://invoice-automator.serraict.com/invoice-updated",
         "type": "Sales/Invoice"
        }'
