@@ -36,10 +36,10 @@ See [./docs/](./docs) for (executable) specifications.
 ### Doing
 
 * When an invoice is updated, we see a log message in DO.
-  * request information is logged and visible in DO
-  * add webhook for invoices
-  * scripts to create and maintain webhooks are added to this repository
-  * documentation  is updated
+  * [x] request information is logged and visible in DO
+  * [ ] add webhook for invoices
+  * [ ] scripts to create and maintain webhooks are added to this repository
+  * [ ] documentation  is updated
 
 ### Backlog
 

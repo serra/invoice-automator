@@ -83,6 +83,19 @@ To administrate invoices, we use the `admin` command.
         Run Successfully     get-paid admin
         The invoices in the sent column in Fibery are stored as an external invoice in MoneyBird
 
+Automation
+~~~~~~~~~~
+
+The application can be run as a web application.
+This web application can respond to webhooks from Fibery.
+
+The production application is running `on Digital Ocean <https://cloud.digitalocean.com/apps/3da71ffa-d137-4880-9824-5d60c33d55c0/overview>`_.
+The base url for this application is https://invoice-automator.serraict.com.
+
+The following webhooks are configured:
+
+* Invoice updated, handled by `invoice-updated <https://invoice-automator.serraict.com/invoice-updated>`_
+
 About these specifications
 --------------------------
 
