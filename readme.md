@@ -37,20 +37,28 @@ See [./docs/](./docs) for (executable) specifications.
 
 Remove keyring from application logic, instead get tokens from environment variables.
 
-* [ ] Fibery
-* [ ] Moneybird
-* [ ] remove keyring deps from code
+* [*] Fibery
+* [*] Moneybird
+* [*] remove keyring deps from code
 
-Local docker compose should retrieve values from keyring and set them as env vars for the container.
+✅ Local docker compose should retrieve values from keyring and set them as env vars for the container.
 
 Dockerize:
 
 * [x] fix headers and footers
 * [x] fix fonts and styles
-* [ ] Install on local NAS or at AWS.
+* [x] Install on local NAS or at AWS.
 
 ### Backlog
 
+* When an invoice is updated, we see a log message in DO.
+  * add webhook for invoices
+  * request information is logged and visible in DO
+  * scripts to create and maintain webhooks are added to this repository
+  * documentation  is updated
+* Only respond to state changes of invoices, not to every update
+  * state field change -> log it
+  * other field change -> ignore it
 * Sales invoices are automatically administrated, and I do not have to do anything manually.
 * ---
 * publish wheel to local repository
