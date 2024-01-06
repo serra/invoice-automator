@@ -96,6 +96,8 @@ The following webhooks are configured:
 
 * Invoice updated, handled by `invoice-updated <https://invoice-automator.serraict.com/invoice-updated>`_
 
+See `the api documentation <https://invoice-automator.serraict.com/docs>`_.
+
 About these specifications
 --------------------------
 
