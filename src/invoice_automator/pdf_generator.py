@@ -52,7 +52,7 @@ def generate_qr_code(invoice):
     qr_code_path = os.path.join(dest_dir, f"serra_ict_qr_for_{nr}.png")
     epc_qr = consumer_epc_qr(
         beneficiary="Serra ICT Diensten",
-        iban="NL86RABO0155773135",
+        iban="NL97ADYB1000003119",
         amount=f"{amount:.2f}",
         remittance=remittance_for_invoice(invoice),
     )
