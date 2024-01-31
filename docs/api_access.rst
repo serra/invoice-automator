@@ -54,6 +54,8 @@ In the development environment, store the api token in the credential storage of
     The environment is set up to access our MoneyBird administration
         can access credential  "Serra ICT Invoice Automator"    "SerraICTInvoiceAutomatorMoneyBirdToken"
         Environment Variable Should Be Set    MONEY_BIRD_BASE_URL
+        Environment Variable Should Be Set    MONEY_BIRD_ADMINISTRATION_ID
+        Environment Variable Should Be Set    MONEYBIRD_API_TOKEN
 
 Moneybird provides a test environment, use this for integration testing.
 We do not use our production administration for testing.

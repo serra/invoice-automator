@@ -13,6 +13,19 @@ make bootstrap
 make update
 ```
 
+## Deployment
+
+To make a release, sync to github and run:
+
+```shell
+make release
+```
+
+On successful release, a Docker image is created an d pushed to Dockerhub.
+
+The [app is deployed to Digital Ocean](https://cloud.digitalocean.com/apps?i=93594d).
+It hosts a webhook for Fibery at <https://invoice-automator.serraict.com/>.
+
 ## How to use
 
 ```shell
@@ -35,20 +48,13 @@ See [./docs/](./docs) for (executable) specifications.
 
 ### Doing
 
+Update bank account number.
+
 ### Backlog
 
-* Only respond to state changes of invoices, not to every update
-  * collect some example changes and use them for tests
-  * state field change -> log it
-  * other field change -> ignore it
 * Sales invoices are automatically administrated, and I do not have to do anything manually.
+  * Update moneybird administration for a sent invoice.
 * ---
-* publish wheel to local repository
-
-* Find a way to use local resources only (e.g. no links to stylesheets using https, no external images).
-  Consider switching to [weasyprint].
-* a better name would be (fibery) serra ict invoice automator
-* deploy to another machine e.g. with a CI tool on it, so that I can automate it further
 
 ---
 
