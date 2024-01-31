@@ -30,7 +30,7 @@ async def update_invoices(request: Request):
         attach_pdf_files_to_invoice_by_id(invoice_client, file_client, ready_invoice_id)
     elif sent_invoice_id:
         money_bird_client = ExternalInvoiceClient(
-            base_url=os.get_env("MONEY_BIRD_BASE_URL")
+            base_url=os.getenv("MONEY_BIRD_BASE_URL")
         )
         logger.info(
             f"State changed to sent for invoice {sent_invoice_id[:5]}, adding invoice to administration ... "
