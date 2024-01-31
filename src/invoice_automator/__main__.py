@@ -15,7 +15,7 @@ except:
     )
 
 
-from .commands import attach_pdf_files_to_invoices
+from .commands import attach_pdf_files_to_invoices, save_invoice_to_moneybird
 
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
@@ -80,10 +80,7 @@ def administrate_invoices(money_bird_base_url):
     mb = ExternalInvoiceClient(money_bird_base_url)
     for invoice in invoice_data:
         print(f"Saving invoice #{invoice['invoiceNumber']} to MoneyBird ...", end=" ")
-        contact_id = mb.get_or_create_contact_id(invoice["customerName"])
-        mb_invoice = from_fibery_invoice(invoice)
-        mb_invoice["contact_id"] = contact_id
-        result = mb.create_invoice(mb_invoice)
+        result = save_invoice_to_moneybird(invoice, mb)
         print(f"done: {result['id']}.")
 
 
