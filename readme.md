@@ -48,13 +48,12 @@ See [./docs/](./docs) for (executable) specifications.
 
 ### Doing
 
-Update bank account number.
+--
 
 ### Backlog
 
-* Sales invoices are automatically administrated, and I do not have to do anything manually.
-  * Update moneybird administration for a sent invoice.
-* ---
+* Fix rounding error in MoneyBird invoice and printed invoice. 
+  E.g. [factuur 2025-65](https://serra.fibery.io/favorites/Project_Management/My-Tasks-2#Sales/Invoice/Open-informatiesysteem-Potlilium-69)
 
 ---
 
