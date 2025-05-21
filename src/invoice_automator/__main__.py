@@ -8,10 +8,10 @@ import logging.config
 
 try:
     logging.config.fileConfig(fname="logging.conf", disable_existing_loggers=False)
-except:
+except Exception as e:
     logging.basicConfig(level=logging.WARN)
     logging.warning(
-        "Could not open 'logging.conf'; falling back to basic logging configuration"
+        f"Could not open 'logging.conf'; falling back to basic logging configuration: {e}"
     )
 
 
@@ -19,7 +19,7 @@ from .commands import attach_pdf_files_to_invoices, save_invoice_to_moneybird
 
 from .fibery import InvoiceClient, FileClient
 from .pdf_generator import generate
-from .moneybird import ExternalInvoiceClient, from_fibery_invoice
+from .moneybird import ExternalInvoiceClient
 
 state_filter = "Ready"
 invoice_client = None
@@ -58,7 +58,7 @@ def generate_pdf_for_invoices():
     for invoice in invoice_data:
         print(f"Generating PDF for invoice #{invoice['invoiceNumber']} ...", end=" ")
         generate(invoice)
-        print(f"done.")
+        print("done.")
 
 
 @cli.command(

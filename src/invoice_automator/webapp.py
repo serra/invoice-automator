@@ -1,6 +1,5 @@
 import logging
 import os
-from pprint import pprint
 from fastapi import FastAPI, Request
 from .__main__ import invoice_client, file_client
 from .commands import attach_pdf_files_to_invoice_by_id, save_invoice_to_moneybird_by_id
