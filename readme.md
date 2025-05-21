@@ -52,8 +52,7 @@ See [./docs/](./docs) for (executable) specifications.
 
 ### Backlog
 
-* Fix rounding error in MoneyBird invoice and printed invoice. 
-  E.g. [factuur 2025-65](https://serra.fibery.io/favorites/Project_Management/My-Tasks-2#Sales/Invoice/Open-informatiesysteem-Potlilium-69)
+* include QR code as base64 instead of saving png on disk
 
 ---
 
