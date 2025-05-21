@@ -2,12 +2,11 @@ import base64
 import os
 
 from .template_helpers import get_template
-from weasyprint import HTML, CSS
+from weasyprint import HTML
 from weasyprint.text.fonts import FontConfiguration
 
 from py_epc_qr.transaction import consumer_epc_qr
 
-from pathlib import Path
 
 # check dest_dir
 dest_dir = os.environ.get("INVOICE_DESTINATION_FOLDER", "./output")
