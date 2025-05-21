@@ -24,7 +24,7 @@ make release
 On successful release, a Docker image is created an d pushed to Dockerhub.
 
 The [app is deployed to Digital Ocean](https://cloud.digitalocean.com/apps?i=93594d).
-It hosts a webhook for Fibery at <https://invoice-automator.serraict.com/>.
+It hosts a webhook for Fibery at <https://automator.serraict.com/>.
 
 ## How to use
 
