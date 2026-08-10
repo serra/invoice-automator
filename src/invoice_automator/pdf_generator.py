@@ -1,7 +1,9 @@
 import base64
 import os
 
-from .template_helpers import get_template
+from decimal import Decimal
+
+from .template_helpers import get_template, round_amount
 from weasyprint import HTML
 from weasyprint.text.fonts import FontConfiguration
 
@@ -28,8 +30,8 @@ stylesheets = [
 
 # An EPC payment QR code can only hold an amount within these bounds,
 # see py_epc_qr.checks.check_amount.
-MIN_QR_AMOUNT = 0.01
-MAX_QR_AMOUNT = 999999999.99
+MIN_QR_AMOUNT = Decimal("0.01")
+MAX_QR_AMOUNT = Decimal("999999999.99")
 
 
 def generate(invoice):
@@ -50,13 +52,22 @@ def generate(invoice):
     return invoice_path
 
 
+def payable_amount(invoice):
+    """Returns the amount to pay, rounded to cents the same way the invoice
+    shows it, or None when it does not fit on a payment QR code."""
+    amount = round_amount(invoice["totalIncludingVat"])
+    if not MIN_QR_AMOUNT <= amount <= MAX_QR_AMOUNT:
+        return None
+    return amount
+
+
 def generate_qr_code(invoice):
     """Returns a payment QR code for the invoice, or None when there is
     nothing to pay, as is the case for a credit note."""
     nr = invoice["invoiceNumber"]
-    amount = round(float(invoice["totalIncludingVat"]), 2)
-    if not MIN_QR_AMOUNT <= amount <= MAX_QR_AMOUNT:
-        print(f"no payment QR code for amount {amount:.2f} ...", end=" ")
+    amount = payable_amount(invoice)
+    if amount is None:
+        print("no payment QR code ...", end=" ")
         return None
     qr_code_path = os.path.join(dest_dir, f"serra_ict_qr_for_{nr}.png")
     epc_qr = consumer_epc_qr(

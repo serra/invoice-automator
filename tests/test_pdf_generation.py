@@ -3,6 +3,7 @@ import os
 from invoice_automator.pdf_generator import (
     generate,
     generate_qr_code,
+    payable_amount,
     remittance_for_invoice,
 )
 from invoice_automator.template_helpers import currency_format
@@ -25,6 +26,21 @@ def test_pdf_generation_for_credit_note():
 
     invoice_path = generate(invoice)
     assert os.path.exists(invoice_path)
+
+
+def test_payable_amount_is_rounded_like_the_invoice_total():
+    """The QR code must ask for the amount the invoice shows, to the cent."""
+    invoice = {"totalIncludingVat": 6972.625}
+
+    assert f"{payable_amount(invoice):.2f}" == "6972.63"
+    assert currency_format(invoice["totalIncludingVat"]) == "€ 6 972,63"
+
+
+def test_no_payable_amount_when_there_is_nothing_to_pay():
+    assert payable_amount({"totalIncludingVat": -395.97}) is None
+    assert payable_amount({"totalIncludingVat": 0}) is None
+    assert payable_amount({"totalIncludingVat": 0.004}) is None
+    assert payable_amount({"totalIncludingVat": 1000000000}) is None
 
 
 def test_remittance():
