@@ -1,11 +1,28 @@
 import json
 import os
-from invoice_automator.pdf_generator import generate, remittance_for_invoice
+from invoice_automator.pdf_generator import (
+    generate,
+    generate_qr_code,
+    remittance_for_invoice,
+)
 from invoice_automator.template_helpers import currency_format
 
 
 def test_pdf_generation():
     invoice = json.load(open("tests/data/invoice_1.json"))
+    invoice_path = generate(invoice)
+    assert os.path.exists(invoice_path)
+
+
+def test_pdf_generation_for_credit_note():
+    """A credit note has nothing to pay, so it gets no payment QR code."""
+    invoice = json.load(open("tests/data/invoice_1.json"))
+    invoice["invoiceNumber"] = "2023-01-credit"
+    for field in ("totalAmount", "vat", "totalIncludingVat"):
+        invoice[field] = -invoice[field]
+
+    assert generate_qr_code(invoice) is None
+
     invoice_path = generate(invoice)
     assert os.path.exists(invoice_path)
 

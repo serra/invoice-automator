@@ -26,6 +26,11 @@ stylesheets = [
     "style/css/style.css",
 ]
 
+# An EPC payment QR code can only hold an amount within these bounds,
+# see py_epc_qr.checks.check_amount.
+MIN_QR_AMOUNT = 0.01
+MAX_QR_AMOUNT = 999999999.99
+
 
 def generate(invoice):
     png_base64_encode_qr_image = generate_qr_code(invoice)
@@ -46,8 +51,13 @@ def generate(invoice):
 
 
 def generate_qr_code(invoice):
+    """Returns a payment QR code for the invoice, or None when there is
+    nothing to pay, as is the case for a credit note."""
     nr = invoice["invoiceNumber"]
-    amount = float(invoice["totalIncludingVat"])
+    amount = round(float(invoice["totalIncludingVat"]), 2)
+    if not MIN_QR_AMOUNT <= amount <= MAX_QR_AMOUNT:
+        print(f"no payment QR code for amount {amount:.2f} ...", end=" ")
+        return None
     qr_code_path = os.path.join(dest_dir, f"serra_ict_qr_for_{nr}.png")
     epc_qr = consumer_epc_qr(
         beneficiary="Serra ICT Diensten",

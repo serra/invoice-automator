@@ -27,9 +27,11 @@
         <img src="data:image/png;base64, {{ png_base64_encode_logo }}" class="logo" />
     </div>
 
+    {% if png_base64_encode_qr_image %}
     <div class="qr-code-container">
         <img src="data:image/png;base64, {{ png_base64_encode_qr_image }}" class="qr-code" />
     </div>
+    {% endif %}
 
 
     <h1>Factuur {{ invoice.invoiceNumber }}</h1>
