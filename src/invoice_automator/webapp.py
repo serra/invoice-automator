@@ -1,6 +1,7 @@
 import logging
 import os
 from fastapi import FastAPI, Request
+from . import APP_NAME, __version__
 from .__main__ import invoice_client, file_client
 from .commands import attach_pdf_files_to_invoice_by_id, save_invoice_to_moneybird_by_id
 from .fibery import (
@@ -11,7 +12,7 @@ from .fibery import (
 from .moneybird import ExternalInvoiceClient
 
 logger = logging.getLogger(__name__)
-logger.info("Starting webapp ... ")
+logger.info(f"Starting {APP_NAME} version {__version__} ... ")
 
 app = FastAPI()
 
